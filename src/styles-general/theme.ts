@@ -23,7 +23,8 @@ export const theme = {
     gradeGray: "linear-gradient(to right, #bdc3c7, #2c3e50);",
     green: "linear-gradient(to right, #11998e, #38ef7d);",
     blue: " linear-gradient(to right, #00c6ff, #0072ff);",
-    sunshine: "linear-gradient(to right, #009fff, #ec2f4b);",
+    sunshine: "linear-gradient(to right, #ec2f4b,#009fff );",
+    celestial: `linear-gradient(to right, #c33764, #1d2671)`,
   },
   fontFamily: {
     outfit: "'Outfit', sans-serif",
