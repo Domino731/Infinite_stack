@@ -5,6 +5,7 @@ export const theme = {
     green: "80b918",
     greenCorrect: "#affc41",
     blue: "#2BA4FF",
+    blueSecondary: "#3a86ff",
     purple: "#7400b8",
     white: "#f8f9fa",
     black: "#212529",
@@ -14,7 +15,8 @@ export const theme = {
     turquoise: "#00F5D4",
     turquoiseSecondary: "#029B86",
     yellow: "fee440",
-    shadow: "",
+    shadow: "#a29797",
+    inputBorder: "#B5A9A9",
   },
   gradient: {
     purple: "linear-gradient(to right, #7f00ff, #e100ff);",
