@@ -1,4 +1,5 @@
 import {FunctionComponent} from "react";
+import { Benefits } from "./benefits/benefits";
 import { Container } from "./generalStyles";
 import { Header } from "./header/header";
 import { Opening } from "./opening/opening";
@@ -9,6 +10,7 @@ export const LandingPage : FunctionComponent = () => {
     <Header/>
     <main>
       <Opening/>
+      <Benefits/>
     </main>
   </>;
 };
