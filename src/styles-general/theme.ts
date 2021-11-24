@@ -1,0 +1,30 @@
+export const theme = {
+  color: {
+    red: "d00000",
+    error: "d90429",
+    green: "80b918",
+    greenCorrect: "#affc41",
+    blue: "#2BA4FF",
+    purple: "#7400b8",
+    white: "#f8f9fa",
+    black: "#212529",
+    grayLigth: "#ced4da",
+    grayDark: "#495057",
+    whiteSecondary: "#F6F6F6",
+    turquoise: "#00F5D4",
+    turquoiseSecondary: "#029B86",
+    yellow: "fee440",
+    shadow: "",
+  },
+  gradient: {
+    purple: "linear-gradient(to right, #7f00ff, #e100ff);",
+    gradeGray: "linear-gradient(to right, #bdc3c7, #2c3e50);",
+    green: "linear-gradient(to right, #11998e, #38ef7d);",
+    blue: " linear-gradient(to right, #00c6ff, #0072ff);",
+    sunshine: "linear-gradient(to right, #009fff, #ec2f4b);",
+  },
+  fontFamily: {
+    outfit: "'Outfit', sans-serif",
+    roboto: "'Roboto', sans-serif",
+  },
+};
