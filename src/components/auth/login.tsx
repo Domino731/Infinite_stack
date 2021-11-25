@@ -24,7 +24,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 /** component with form for logging user  */
 export const Login: FunctionComponent = () => {
 
-  // state with data necessary for create new user account in firebase data base
+  // state with data necessary to login 
   const [data, setData] = useState<{
     email: string;
     password: string;

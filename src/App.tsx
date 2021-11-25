@@ -8,6 +8,7 @@ import { createStore } from "redux";
 import { reducers } from "./redux/combineReducers";
 import { SignUp } from "./components/auth/signUp";
 import { Login } from "./components/auth/login";
+import { PasswordRecovery } from "./components/auth/passwordRecovery";
 const store = createStore(reducers);
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path='/sign-up' element={<SignUp/>} />
             <Route path='/login' element={<Login />} />
+            <Route path='/password-recovery' element={<PasswordRecovery/>} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

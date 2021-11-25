@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import bg from "../../images/auth/auth_waves_red.svg";
 export const AuthContainer = styled.main`
   width: 100%;
   height: 100vh;
@@ -13,6 +13,7 @@ export const AuthBox = styled.div<{ background?: string }>`
   width: 50%;
   height: 100%;
 `;
+
 export const AuthIconWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -29,6 +30,21 @@ export const AuthFormWrapper = styled.div`
   align-items: center;
   padding: 0 230px;
 `;
+export const AuthFormWrapperPasswordRecovery = styled(AuthFormWrapper)`
+  height: 100%;
+  background-color: #fff;
+`;
+export const PasswordRecoveryFormWrapper = styled.div`
+  width: 50%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 230px;
+  border: 1px solid green;
+  background: #fff;
+`;
+
 export const AuthTitle = styled.h2`
   width: 100%;
   font-size: 43px;
@@ -157,4 +173,26 @@ export const RightsWrapper = styled.div`
   padding-bottom: 30px;
   display: flex;
   align-items: flex-end;
+`;
+export const PasswordRecoveryContainer = styled.main`
+  height: 100vh;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  &::after {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: url(${bg}) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 `;
