@@ -6,7 +6,7 @@ import { GlobalStyle } from "./styles-general/global-styles";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { reducers } from "./redux/combineReducers";
-import { SignUp } from "./components/auth/signUp/signUp";
+import { SignUp } from "./components/auth/signUp";
 const store = createStore(reducers);
 function App() {
   return (
