@@ -14,11 +14,11 @@ export const AuthCard: FunctionComponent<{ bg: string }> = ({ bg }) => {
         <div>
           <img src={logo} alt="Logo" />
         </div>
-        <h1>Infnite_stack</h1>
+        <h1>Infinite_stack</h1>
       </TitleWrapper>
       <QuoteWrapper>
         Others are discovering future <br />
-        You create it
+        You are making
       </QuoteWrapper>
       <RightsWrapper>
         2021 &copy; Dominik Orzechowski, all rights reserved

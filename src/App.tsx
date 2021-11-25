@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { reducers } from "./redux/combineReducers";
 import { SignUp } from "./components/auth/signUp";
+import { Login } from "./components/auth/login";
 const store = createStore(reducers);
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             {/* home page */}
             <Route path="/" element={<LandingPage />} />
             <Route path='/sign-up' element={<SignUp/>} />
+            <Route path='/login' element={<Login />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

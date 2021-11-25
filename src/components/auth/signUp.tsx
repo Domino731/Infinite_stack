@@ -19,7 +19,9 @@ import authIcon from "../../images/auth/signup_icon.svg";
 import errorIcon from "../../images/auth/error_icon.svg";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+//@ts-ignore
 import { AuthCard } from "./AuthCard";
+
 
 /** component with form for creating new user account */
 export const SignUp: FunctionComponent = () => {
@@ -67,7 +69,8 @@ export const SignUp: FunctionComponent = () => {
             return setError((prev) => ({ ...prev, email: "Invalid e-mail" }));
           } else if (errorCode === "auth/missing-email") {
             return setError((prev) => ({ ...prev, email: "Enter e-mail" }));
-          } else if (errorCode === "auth/weak-password") {
+          } 
+           if (errorCode === "auth/weak-password") {
             return setError((prev) => ({
               ...prev,
               password: "Password must have 6 characters at least",
@@ -107,8 +110,9 @@ export const SignUp: FunctionComponent = () => {
 
   return (
     <AuthContainer>
+      {/* <AuthCard bg={bg}/> */}
       <AuthCard bg={bg}/>
-
+      
       <AuthFormWrapper>
         {/* decorative icon */}
         <AuthIconWrapper>
@@ -123,7 +127,7 @@ export const SignUp: FunctionComponent = () => {
         <AuthForm>
           {/* email input */}
           <LabelWrapper>
-            <LabelItem>E-mail*</LabelItem>
+            <LabelItem>E-mail</LabelItem>
             <AuthInput
               value={data.email}
               type="email"
@@ -136,33 +140,31 @@ export const SignUp: FunctionComponent = () => {
 
           {/* password input */}
           <LabelWrapper>
-            <LabelItem>Password*</LabelItem>
+            <LabelItem>Password</LabelItem>
             <AuthInput
               type="password"
               value={data.password}
               name="password"
               onChange={handleChangeData}
-              placeholder="example@website.com"
-              correct
+              correct={!(error.password.length > 0)}
             />
           </LabelWrapper>
 
           {/* repeat the password input */}
           <LabelWrapper>
-            <LabelItem>Repeat the password*</LabelItem>
+            <LabelItem>Repeat the password</LabelItem>
             <AuthInput
               type="password"
               value={data.repeat}
               name="repeat"
               onChange={handleChangeData}
-              placeholder="example@website.com"
-              correct
+              correct={!(error.password.length > 0)}
             />
           </LabelWrapper>
 
           {/* link to login form */}
           <RedirectLinkWrapper color="#00d4b8">
-            <Link to="/">Already have an account?</Link>
+            <Link to="/login">Already have an account?</Link>
           </RedirectLinkWrapper>
 
           {/* errors */}

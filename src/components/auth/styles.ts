@@ -81,6 +81,10 @@ export const RedirectLinkWrapper = styled.div<{ color: string }>`
     color: ${(props) => props.color};
   }
 `;
+export const RedirectLinksWrapper = styled(RedirectLinkWrapper)`
+  display: flex;
+  justify-content: space-between;
+`;
 export const Button = styled.button<{ color: string }>`
   background: ${(props) => props.color};
   margin-top: 1.3em;
