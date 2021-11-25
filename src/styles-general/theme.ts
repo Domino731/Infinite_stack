@@ -1,7 +1,7 @@
 export const theme = {
   color: {
     red: "d00000",
-    error: "d90429",
+    error: "#ff3333",
     green: "80b918",
     greenCorrect: "#affc41",
     blue: "#2BA4FF",
