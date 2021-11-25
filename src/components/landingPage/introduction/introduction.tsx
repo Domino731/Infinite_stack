@@ -4,12 +4,13 @@ import { ReduxState } from "../../../redux/combineReducers";
 import { TypeSelectedCardOptions } from "../../../types";
 import IntroductionCard  from "./introductionCard";
 import { CardsList, GraphicContainer, IntroductionContainer } from "./styles";
-
+import introductionGraphic from "../../../images/landing-page/introduction.jpg";
  const Introduction: FunctionComponent<{selectedCard: TypeSelectedCardOptions}> = ({selectedCard}) => {
   return (
     <IntroductionContainer>
       <GraphicContainer>
-{selectedCard}
+         <img src={introductionGraphic}/>
+         {/* <a href='https://www.freepik.com/vectors/abstract'>Abstract vector created by vectorjuice - www.freepik.com</a> */}
       </GraphicContainer>
 
       <CardsList>

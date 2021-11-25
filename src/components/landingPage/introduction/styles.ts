@@ -3,15 +3,18 @@ import styled from "styled-components";
 import { gradients } from "../../../properties/gradients";
 export const IntroductionContainer = styled.div`
   padding: 20px 0;
+  display: flex;
   margin-top: 70px;
 `;
 export const GraphicContainer = styled.div`
-  display: inline-block;
   width: 50%;
+  img {
+    width: 100%;
+  }
 `;
 export const CardsList = styled.ul`
-  display: inline-block;
   width: 50%;
+  padding-left: 50px;
 `;
 
 interface PropsIntroductionCardContainer {
@@ -23,7 +26,7 @@ export const IntroductionCardContainer = styled.li<PropsIntroductionCardContaine
   align-items: flex-start;
   justify-content: center;
   width: 80%;
-  margin-top: 22px;
+  margin-bottom: 22px;
   border-radius: 22px;
   height: 110px;
   padding: 0 14px;

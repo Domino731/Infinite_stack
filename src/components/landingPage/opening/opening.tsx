@@ -36,7 +36,7 @@ export const Opening: FunctionComponent = () => {
 
         {/* link to sign up form */}
         <OpeningLink>
-          <Link to={{ pathname: "/courses" }}>Let's get started</Link>
+          <Link to='/sing-up'>Let's get started</Link>
         </OpeningLink>
 
       </OpeningContent>

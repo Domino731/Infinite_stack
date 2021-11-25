@@ -67,33 +67,41 @@ export const SearchBtn = styled.button`
 `;
 
 const AuthLink = styled.div`
-  height: 100%;
-  padding: 0 32px;
-  height: 41px;
-  font-size: 23px;
-  font-weight: 700;
-  margin-left: 14px;
-  border-radius: 9px;
-  border: none;
-  line-height: 100px;
-  display: flex;
-  align-items: center;
+  a {
+    display: block;
+    height: 100%;
+    padding: 0 32px;
+    height: 41px;
+    font-size: 23px;
+    font-weight: 700;
+    margin-left: 14px;
+    border-radius: 9px;
+    border: none;
+    line-height: 100px;
+    display: flex;
+    align-items: center;
+  }
 `;
 export const LogInLink = styled(AuthLink)`
-  border: 3px solid ${(props) => props.theme.color.blueSecondary};
-  transition: 0.1s;
-  &:hover {
-    color: ${(props) => props.theme.color.white};
-    background-color: ${(props) => props.theme.color.blueSecondary};
+  a {
+    border: 3px solid ${(props) => props.theme.color.blueSecondary};
+    transition: 0.1s;
+    color: ${(props) => props.theme.color.black};
+    &:hover {
+      color: ${(props) => props.theme.color.white};
+      background-color: ${(props) => props.theme.color.blueSecondary};
+    }
   }
 `;
 export const SignUpLink = styled(AuthLink)`
-  transition: 0.1s;
-  background-color: ${(props) => props.theme.color.blueSecondary};
-  color: ${(props) => props.theme.color.white};
-  &:hover {
-    border: 3px solid ${(props) => props.theme.color.blueSecondary};
-    color: ${(props) => props.theme.color.blueSecondary};
-    background-color: ${(props) => props.theme.color.white};
+  a {
+    transition: 0.1s;
+    background-color: ${(props) => props.theme.color.blueSecondary};
+    color: ${(props) => props.theme.color.white};
+    &:hover {
+      border: 3px solid ${(props) => props.theme.color.blueSecondary};
+      color: ${(props) => props.theme.color.blueSecondary};
+      background-color: ${(props) => props.theme.color.white};
+    }
   }
 `;

@@ -1,5 +1,6 @@
 import {FunctionComponent} from "react";
 import { Benefits } from "./benefits/benefits";
+import { Footer } from "./footer/footer";
 import { Header } from "./header/header";
 import  Introduction  from "./introduction/introduction";
 import { Opening } from "./opening/opening";
@@ -13,5 +14,6 @@ export const LandingPage : FunctionComponent = () => {
       <Benefits/>
       <Introduction/>
     </main>
+    <Footer/>
   </>;
 };
