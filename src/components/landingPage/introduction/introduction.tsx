@@ -1,15 +1,19 @@
 import { FunctionComponent } from "react";
-import { IntroductionCard } from "./introductionCard";
+import { connect } from "react-redux";
+import { ReduxState } from "../../../redux/combineReducers";
+import { TypeSelectedCardOptions } from "../../../types";
+import IntroductionCard  from "./introductionCard";
 import { CardsList, GraphicContainer, IntroductionContainer } from "./styles";
 
-export const Introduction: FunctionComponent = () => {
+ const Introduction: FunctionComponent<{selectedCard: TypeSelectedCardOptions}> = ({selectedCard}) => {
   return (
     <IntroductionContainer>
       <GraphicContainer>
-        
+{selectedCard}
       </GraphicContainer>
 
       <CardsList>
+
         <IntroductionCard
           title="Your project"
           description={<>Your rules, you time. Plan your project from start to finish. <br/>
@@ -43,3 +47,7 @@ export const Introduction: FunctionComponent = () => {
     </IntroductionContainer>
   );
 };
+const mapStateToProps = (state: ReduxState) => ({
+   selectedCard: state.introductionCard
+})
+export default connect(mapStateToProps)(Introduction)

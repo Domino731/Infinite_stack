@@ -1,3 +1,4 @@
+import { Props } from "react";
 import styled from "styled-components";
 import { gradients } from "../../../properties/gradients";
 export const IntroductionContainer = styled.div`
@@ -12,7 +13,11 @@ export const CardsList = styled.ul`
   display: inline-block;
   width: 50%;
 `;
-export const IntroductionCardContainer = styled.li`
+
+interface PropsIntroductionCardContainer {
+  active: boolean;
+}
+export const IntroductionCardContainer = styled.li<PropsIntroductionCardContainer>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

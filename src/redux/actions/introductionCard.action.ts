@@ -1,20 +1,17 @@
-import { IFActionIntroductionCard, TypeSelectedCardOptions } from "../../types";
+import { TypeSelectedCardOptions } from "../../types";
 import { Dispatch } from "redux";
+import { EIntroductionCardActionType } from "../actions-types";
+import { IFIntroductionCard } from "../reducers/introductionCard";
+
 /**
  * REDUX ACTION - change introductionCard state
  * @param card - name of card that you want to change
  */
-export const reduxChangeIntroductionCard = (card: TypeSelectedCardOptions) => {
-  return (dispatch: Dispatch) => {
+export const changeIntroductionCard = (card: TypeSelectedCardOptions) => {
+  return (dispatch: Dispatch<IFIntroductionCard>) => {
     dispatch({
-      type: "CHANGE_INTRODUCTION_CARD",
-      card: card,
+      type: EIntroductionCardActionType.CHANGE,
+      selectedCard: card,
     });
   };
 };
-
-// ({
-//     type: "CHANGE_INTRODUCTION_CARD",
-//     selectedCard: card,
-//   });
-export {};

@@ -6,8 +6,8 @@ import { GlobalStyle } from "./styles-general/global-styles";
 import { Reset } from "styled-reset";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import rootReducer from "./redux/combineReducers";
-const store = createStore(rootReducer);
+import { reducers } from "./redux/combineReducers";
+const store = createStore(reducers);
 function App() {
   return (
     <Provider store={store}>
