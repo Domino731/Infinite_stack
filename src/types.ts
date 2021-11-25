@@ -3,8 +3,13 @@ export interface IFPropsBenefitItem {
   graphicSource: string;
   description: string;
 }
-
+export interface IFPropsIntroductionCard {
+  title: string;
+  description: JSX.Element;
+  active: boolean;
+}
 // REDUX //
+
 export type TypeSelectedCardOptions =
   | "your_project"
   | "need_help"

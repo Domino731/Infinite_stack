@@ -27,4 +27,9 @@ body {
   a {
     text-decoration: none;
   }
+  ol, ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 `;
