@@ -196,3 +196,22 @@ export const PasswordRecoveryContainer = styled.main`
     background-size: cover;
   }
 `;
+export const SuccessEmailSendGraphic = styled.img`
+  width: 50%;
+`;
+export const SuccessEmailSendTitle = styled.h2`
+  font-size: 35px;
+  margin-top: 55px;
+  text-align: center;
+  letter-spacing: 0.063em;
+  line-height: 1em;
+`;
+export const GoBackLinkWrapper = styled.div`
+  margin-top: 10px;
+  text-align: center;
+
+  a {
+    color: ${(props) => props.theme.color.grayDark};
+    text-decoration: underline;
+  }
+`;
