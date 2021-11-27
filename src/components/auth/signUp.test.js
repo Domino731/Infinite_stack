@@ -1,16 +1,9 @@
-import React from "react";
-import {
-  fireEvent,
-  getByPlaceholderText,
-  render,
-  screen,
-} from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { SignUp } from "./signUp";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles-general/theme";
 import { BrowserRouter } from "react-router-dom";
-import { shallow } from "enzyme";
 
 test("Renders SignUp component in order", async () => {
   const { getByText } = render(

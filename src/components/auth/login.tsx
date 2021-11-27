@@ -17,14 +17,13 @@ import bg from "../../images/auth/auth_waves_blue.svg";
 import { Link } from "react-router-dom";
 import authIcon from "../../images/auth/signup_icon.svg";
 import errorIcon from "../../images/auth/error_icon.svg";
-import { auth} from "../../firebase";
+import { auth } from "../../firebase";
 import { AuthCard } from "./AuthCard";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 /** component with form for logging user  */
 export const Login: FunctionComponent = () => {
-
-  // state with data necessary to login 
+  // state with data necessary to login
   const [data, setData] = useState<{
     email: string;
     password: string;
@@ -42,37 +41,42 @@ export const Login: FunctionComponent = () => {
   }, []);
 
   /** auth operation responsible for logging user */
-  const handleLogin = (e: Event) => {
+  const handleLogin = async (e: Event) => {
     e.preventDefault();
 
     // clear previous errors
     setError({ email: "", password: "" });
 
-    return signInWithEmailAndPassword(auth, data.email, data.password)
-    .then(() => {
-      console.log("User logged successfully");
-      window.location.href = "/dashboard";
-    })
-    // catching errors
-    .catch((error) => {
-      // set errors and notify user about them
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-       // display errors
-       if (errorCode === "auth/invalid-email") {
-        return setError((prev) => ({ ...prev, email: "Invalid e-mail" }));
-      } else if (errorCode === "auth/missing-email") {
-        return setError((prev) => ({ ...prev, email: "Enter e-mail" }));
-      } 
-       else if (errorCode === "auth/wrong-password") {
-        return setError((prev) => ({
-          ...prev,
-          password: "Wrong password",
-        }));
-      }
-
-    })
+    return (
+       await signInWithEmailAndPassword(auth, data.email, data.password)
+        .then(() => {
+          console.log("User logged successfully");
+          window.location.href = "/dashboard";
+        })
+        // catching errors
+        .catch((error) => {
+          // set errors and notify user about them
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          // display errors
+          if (errorCode === "auth/invalid-email") {
+           setError((prev) => ({ ...prev, email: "Invalid e-mail" }));
+          } else if (errorCode === "auth/missing-email") {
+           setError((prev) => ({ ...prev, email: "Enter e-mail" }));
+          } 
+          if (errorCode === "auth/wrong-password") {
+          setError((prev) => ({
+              ...prev,
+              password: "Wrong password",
+            }));
+          }
+          console.log(errorCode)
+          if(errorCode === "auth/too-many-requests"){
+            setError((prev) => ({ ...prev, email: "Too many failed attempts to login, try restart your password" }));
+          }
+        })
+    );
   };
 
   /** change data state */
@@ -82,7 +86,7 @@ export const Login: FunctionComponent = () => {
   };
 
   return (
-    <AuthContainer>
+    <AuthContainer data-testid="login-container">
       <AuthFormWrapper>
         {/* decorative icon */}
         <AuthIconWrapper>
@@ -99,6 +103,7 @@ export const Login: FunctionComponent = () => {
           <LabelWrapper>
             <LabelItem>E-mail</LabelItem>
             <AuthInput
+              aria-label="input-email"
               value={data.email}
               type="email"
               name="email"
@@ -112,6 +117,7 @@ export const Login: FunctionComponent = () => {
           <LabelWrapper>
             <LabelItem>Password</LabelItem>
             <AuthInput
+              aria-label="input-password"
               type="password"
               value={data.password}
               name="password"
@@ -134,7 +140,7 @@ export const Login: FunctionComponent = () => {
             </ErrorWrapper>
           )}
           {error.password && (
-            <ErrorWrapper>
+            <ErrorWrapper data-testid="password-error-wrapper">
               <img src={errorIcon} alt="Error" />
               <strong>{error.password}</strong>
             </ErrorWrapper>
@@ -142,6 +148,7 @@ export const Login: FunctionComponent = () => {
           {/* 
 button which callback responsible for creating new user's account */}
           <Button
+            data-testid="btn-login"
             onClick={(e: any) => handleLogin(e)}
             color="linear-gradient(to bottom, #00b4db, #0083b0); "
           >
