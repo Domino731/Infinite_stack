@@ -39,19 +39,18 @@ export const PasswordRecovery: FunctionComponent = () => {
   };
 
   // set mail with next steps
-  const handleResetPassword = (e: Event) => {
+  const handleResetPassword = async (e: Event) => {
     e.preventDefault();
 
     // clear error
     setError("");
 
-    return sendPasswordResetEmail(auth, email)
+    return await sendPasswordResetEmail(auth, email)
       .then(() => {
         console.log("E-mail with next steps was sent");
 
         // change state and inform user about success auth operation
         setSuccessSendFlag(true);
-
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -68,7 +67,7 @@ export const PasswordRecovery: FunctionComponent = () => {
       });
   };
   return (
-    <PasswordRecoveryContainer>
+    <PasswordRecoveryContainer data-testid="password-recovery-container">
       {/* form */}
       {!successSendFlag && (
         <AuthFormWrapperPasswordRecovery>
@@ -87,6 +86,7 @@ export const PasswordRecovery: FunctionComponent = () => {
             <LabelWrapper>
               <LabelItem>E-mail</LabelItem>
               <AuthInput
+                aria-label="input-email"
                 value={email}
                 type="email"
                 name="email"
@@ -104,7 +104,7 @@ export const PasswordRecovery: FunctionComponent = () => {
 
             {/* errors */}
             {error && (
-              <ErrorWrapper>
+              <ErrorWrapper data-testid="error-wrapper">
                 <img src={errorIcon} alt="Error" />
                 <strong>{error}</strong>
               </ErrorWrapper>
@@ -122,9 +122,9 @@ button which callback responsible for creating new user's account */}
         </AuthFormWrapperPasswordRecovery>
       )}
           
-      {/*  container which is informing user about successful email sent */}
+      {/*  container which is informing user about successful email send */}
       {successSendFlag && (
-        <AuthFormWrapperPasswordRecovery>
+        <AuthFormWrapperPasswordRecovery data-testid="successful-sent">
           <SuccessEmailSendGraphic src={sendGraphic} />
           <SuccessEmailSendTitle>
             Email with next steps has been sent to your inbox

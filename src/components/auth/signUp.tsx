@@ -22,7 +22,6 @@ import { auth } from "../../firebase";
 //@ts-ignore
 import { AuthCard } from "./AuthCard";
 
-
 /** component with form for creating new user account */
 export const SignUp: FunctionComponent = () => {
   // state with data necessary for create new user account in firebase data base
@@ -44,13 +43,13 @@ export const SignUp: FunctionComponent = () => {
   }, []);
 
   // creating user profile and his initial data in firestore database
-  const authAction = () => {
+  const authAction = async () => {
     // remove previous errors
     setError({ email: "", password: "" });
 
     /** auth operation */
     return (
-      createUserWithEmailAndPassword(auth, data.email, data.password)
+      await createUserWithEmailAndPassword(auth, data.email, data.password)
         // if user's account has been created successfully, then redirect him to panel with account settings
         .then(() => {
           console.log("User created successfully");
@@ -69,8 +68,8 @@ export const SignUp: FunctionComponent = () => {
             return setError((prev) => ({ ...prev, email: "Invalid e-mail" }));
           } else if (errorCode === "auth/missing-email") {
             return setError((prev) => ({ ...prev, email: "Enter e-mail" }));
-          } 
-           if (errorCode === "auth/weak-password") {
+          }
+          if (errorCode === "auth/weak-password") {
             return setError((prev) => ({
               ...prev,
               password: "Password must have 6 characters at least",
@@ -84,10 +83,10 @@ export const SignUp: FunctionComponent = () => {
   const special = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
   /** try to create user's account in firebase */
-  const signUp = (e: Event) => {
+  const signUp = async(e: Event) => {
     e.preventDefault();
     if (data.password === data.repeat && special.test(data.password)) {
-      return authAction();
+      return await authAction();
     } else {
       if (data.password !== data.repeat) {
         setError((prev) => ({
@@ -111,8 +110,8 @@ export const SignUp: FunctionComponent = () => {
   return (
     <AuthContainer>
       {/* <AuthCard bg={bg}/> */}
-      <AuthCard bg={bg}/>
-      
+      <AuthCard bg={bg} />
+
       <AuthFormWrapper>
         {/* decorative icon */}
         <AuthIconWrapper>
@@ -129,6 +128,7 @@ export const SignUp: FunctionComponent = () => {
           <LabelWrapper>
             <LabelItem>E-mail</LabelItem>
             <AuthInput
+              aria-label="input-email"
               value={data.email}
               type="email"
               name="email"
@@ -142,6 +142,7 @@ export const SignUp: FunctionComponent = () => {
           <LabelWrapper>
             <LabelItem>Password</LabelItem>
             <AuthInput
+              aria-label="input-password"
               type="password"
               value={data.password}
               name="password"
@@ -154,6 +155,7 @@ export const SignUp: FunctionComponent = () => {
           <LabelWrapper>
             <LabelItem>Repeat the password</LabelItem>
             <AuthInput
+              aria-label="input-password-repeat"
               type="password"
               value={data.repeat}
               name="repeat"
@@ -169,25 +171,26 @@ export const SignUp: FunctionComponent = () => {
 
           {/* errors */}
           {error.email && (
-            <ErrorWrapper>
+            <ErrorWrapper aria-label="error-email">
               <img src={errorIcon} alt="Error" />
               <strong>{error.email}</strong>
             </ErrorWrapper>
           )}
           {error.password && (
-            <ErrorWrapper>
+            <ErrorWrapper aria-label="error-password-repeat">
               <img src={errorIcon} alt="Error" />
               <strong>{error.password}</strong>
             </ErrorWrapper>
           )}
-{/* 
+          {/* 
 button which callback responsible for creating new user's account */}
           <Button
+            aria-label="sign-up-button"
             onClick={(e: any) => signUp(e)}
-            color="linear-gradient(to right, #11998e, #38ef7d);">
-           Create account
+            color="linear-gradient(to right, #11998e, #38ef7d);"
+          >
+            Create account
           </Button>
-
         </AuthForm>
       </AuthFormWrapper>
     </AuthContainer>
