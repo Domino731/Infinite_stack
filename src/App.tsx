@@ -9,6 +9,9 @@ import { reducers } from "./redux/combineReducers";
 import { SignUp } from "./components/auth/signUp";
 import { Login } from "./components/auth/login";
 import { PasswordRecovery } from "./components/auth/passwordRecovery";
+import { Dashboard } from "./components/dashboard/dashboard";
+import { ProtectedRoute } from "./components/general/protectedRoute";
+
 const store = createStore(reducers);
 function App() {
   return (
@@ -19,9 +22,16 @@ function App() {
           <Routes>
             {/* home page */}
             <Route path="/" element={<LandingPage />} />
-            <Route path='/sign-up' element={<SignUp/>} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/password-recovery' element={<PasswordRecovery/>} />
+
+            {/* auth forms */}
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/password-recovery" element={<PasswordRecovery />} />
+
+            {/* dashboard - protected, only for logged users */}
+            <Route path="/" element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

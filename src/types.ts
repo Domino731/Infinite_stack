@@ -1,3 +1,6 @@
+import { FunctionComponent, JSXElementConstructor, ReactElement } from "react";
+
+// components props
 export interface IFPropsBenefitItem {
   title: string;
   graphicSource: string;
@@ -8,8 +11,13 @@ export interface IFPropsIntroductionCard {
   description: JSX.Element;
   active: boolean;
 }
-// REDUX //
 
+export interface IFPropsPrivateRoute {
+  Component: JSX.Element;
+  path: string;
+}
+
+// REDUX //
 export type TypeSelectedCardOptions =
   | "your_project"
   | "need_help"
