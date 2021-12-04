@@ -8,6 +8,8 @@ export const theme = {
     blueSecondary: "#3a86ff",
     purple: "#7400b8",
     white: "#f8f9fa",
+    whitePrimary: "#e9e9e9",
+    silver: "#c6c6c6",
     black: "#212529",
     grayLight: "#ced4da",
     grayDark: "#495057",
