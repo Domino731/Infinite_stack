@@ -1,61 +1,135 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../images/general/logo.svg";
-import { ListItem, NavList } from "../styles";
+import { IFNavigationActiveListState } from "../../../types";
+import {
+  ListItem,
+  ListItemOpen,
+  ListText,
+  NavList,
+  NestedList,
+  NestedListItem,
+} from "../styles";
 import { LogoGraphic, Title, TitleWrapper } from "./styles";
 
 /**
  * Component with navigation links to specific sections
  */
-export const Navigation : FunctionComponent = () => {
-return <>
-<TitleWrapper>
-    <LogoGraphic src={logo}/>
-    <Title>Infinite_stack</Title>
-</TitleWrapper>
+export const Navigation: FunctionComponent = () => {
+  // state by which user can toggle nested list in specific list item
+  const [activeList, setActiveList] = useState<IFNavigationActiveListState>({
+    teams: true,
+    projects: false,
+    community: false,
+  });
 
-<nav>
-    <NavList>
+  /** change activeList state
+   * @param listName - name of item in activeList state that you want to change
+   */
+  const handleChangeActiveList = (
+    listName: "teams" | "projects" | "community"
+  ) => {
+    console.log(activeList[listName] ? true : false);
+    return setActiveList((prev) => ({
+      ...prev,
+      [listName]: !activeList[listName],
+    }));
+  };
 
-        {/* overview panel link */}
-        <ListItem>
-            <Link to='/'>
-            <i className="far fa-compass"/> Overview
+  return (
+    <>
+      <TitleWrapper>
+        <LogoGraphic src={logo} />
+        <Title>Infinite_stack</Title>
+      </TitleWrapper>
+
+      <nav>
+        <NavList>
+          {/* overview panel link */}
+          <ListItem active={false}>
+            <Link to="/">
+              <i className="far fa-compass" /> Overview
             </Link>
-        </ListItem>
+          </ListItem>
 
-        <ListItem>
-            <Link to='/'>
-            <i className="fas fa-trophy"/> Teams
+          <ListItemOpen active={activeList.teams}>
+            <ListText active={activeList.teams}  onClick={() => handleChangeActiveList("teams")}>
+              <i className="fas fa-trophy" /> Teams{" "}
+              <i className="fas fa-chevron-down" />
+            </ListText>
+
+            {activeList.teams && (
+              <NestedList>
+                <NestedListItem animationDelay={0}>
+                  <Link to="/">Spacex</Link>
+                </NestedListItem>
+                <NestedListItem animationDelay={0.1}>
+                  <Link to="/">Microsoft</Link>
+                </NestedListItem>
+                <NestedListItem animationDelay={0.3}>
+                  <Link to="/">Apple</Link>
+                </NestedListItem>
+              </NestedList>
+            )}
+          </ListItemOpen>
+
+          <ListItemOpen active={false}>
+
+            <ListText active={activeList.projects} onClick={() => handleChangeActiveList("projects")}>
+              <i className="fas fa-tools" /> Projects{" "}
+              <i className="fas fa-chevron-down" />
+            </ListText>
+
+            {activeList.projects && (
+              <NestedList>
+                <NestedListItem animationDelay={0}>
+                  <Link to="/">Game</Link>
+                </NestedListItem>
+                <NestedListItem animationDelay={0.1}>
+                  <Link to="/">React</Link>
+                </NestedListItem>
+                <NestedListItem animationDelay={0.3}>
+                  <Link to="/">Angular training</Link>
+                </NestedListItem>
+              </NestedList>
+            )}
+          </ListItemOpen>
+
+          <ListItem active={false}>
+            <Link to="/">
+              <i className="far fa-calendar-alt" /> Calendar
             </Link>
-        </ListItem>
+          </ListItem>
 
-        <ListItem>
-            <Link to='/'>
-            <i className="fas fa-tools"/> Projects
+          <ListItemOpen active={false}>
+
+            <ListText active={activeList.community} onClick={() => handleChangeActiveList("community")}>
+              <i className="fas fa-users" /> Community
+              <i className="fas fa-chevron-down" />
+            </ListText>
+
+            {activeList.community && (
+              <NestedList>
+                <NestedListItem animationDelay={0}>
+                  <Link to="/">Game</Link>
+                </NestedListItem>
+                <NestedListItem animationDelay={0.1}>
+                  <Link to="/">React</Link>
+                </NestedListItem>
+                <NestedListItem animationDelay={0.3}>
+                  <Link to="/">Angular training</Link>
+                </NestedListItem>
+              </NestedList>
+            )}
+          </ListItemOpen>
+
+          <ListItem active={false}>
+            <Link to="/">
+              <i className="fas fa-cogs" /> Settings
             </Link>
-        </ListItem>
-
-        <ListItem>
-            <Link to='/'>
-            <i className="far fa-calendar-alt"/> Calendar
-            </Link>
-        </ListItem>
-
-
-        <ListItem>
-            <Link to='/'>
-            <i className="fas fa-users"/> Community
-            </Link>
-        </ListItem>
-
-        <ListItem>
-            <Link to='/'>
-            <i className="fas fa-cogs"/> Settings
-            </Link>
-        </ListItem>
-    </NavList>
-</nav>
-
-</>
-}
+          </ListItem>
+        </NavList>
+      </nav>
+    </>
+  );
+};

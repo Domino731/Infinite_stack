@@ -29,3 +29,11 @@ export interface IFActionIntroductionCard {
   selectedCard: TypeSelectedCardOptions;
 }
 export {};
+
+// Navigation
+
+export interface IFNavigationActiveListState {
+  teams: boolean;
+  projects: boolean;
+  community: boolean;
+}

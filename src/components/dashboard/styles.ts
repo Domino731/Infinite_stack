@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { keyframes } from "styled-components";
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -21,21 +21,77 @@ export const NavList = styled.ul`
   margin-top: 71px;
 `;
 
-export const ListItem = styled.li`
+interface PropsListItemOpen {
+  active?: boolean;
+}
+export const ListText = styled.div<{ active: boolean }>`
   padding: 6px 16px;
   border-radius: 9px;
-  margin-bottom: 12px;
-  font-size: 25px;
-  transition: 0.05s;
   &:hover {
+    color: ${(props) => props.theme.color.black};
     cursor: pointer;
     background-color: ${(props) => props.theme.color.whitePrimary};
   }
+  position: relative;
+  i[class="fas fa-chevron-down"] {
+    right: 21px;
+    position: absolute;
+    min-width: 0;
+    transition: 0.2s;
+    transform: ${(props) => (props.active ? "rotate(180deg)" : "rotate(0deg)")};
+  }
+  &:hover i[class="fas fa-chevron-down"] {
+    transform: rotate(180deg);
+  }
+`;
+
+export const ListItem = styled.li<PropsListItemOpen>`
+  margin-bottom: 8px;
+  font-size: 25px;
+  transition: 0.05s;
+  color: ${(props) => props.theme.color.silver};
+
   a {
-    color: ${(props) => props.theme.color.silver};
+    display: block;
+    padding: 6px 16px;
+    border-radius: 9px;
+    color: inherit;
+    &:hover {
+      color: ${(props) => props.theme.color.black};
+      cursor: pointer;
+      background-color: ${(props) => props.theme.color.whitePrimary};
+    }
   }
   i {
     display: inline-block;
     min-width: 1.6em;
+  }
+`;
+
+export const ListItemOpen = styled(ListItem)``;
+
+export const NestedList = styled.ul`
+  margin: 11px 0 21px 26px;
+  padding-left: 13px;
+  border-left: 5px solid ${(props) => props.theme.color.blue};
+`;
+
+const showNestedListItem = keyframes`
+  from {
+    transform: scale(0%);
+  }
+
+  to {
+    transform: scale(100%);
+  }
+`;
+
+export const NestedListItem = styled.li<{ animationDelay?: number }>`
+  transform: scale(0%);
+  animation: 0.2s ${showNestedListItem} forwards;
+  animation-delay: ${(props) => props.animationDelay + "s"};
+  a {
+    appearance: none;
+    font-size: 19px;
   }
 `;
