@@ -1,5 +1,16 @@
 import { FunctionComponent } from "react";
+import { Navigation } from "./navigation/navigation";
+
+import { Container, ContentWrapper, NavWrapper } from "./styles";
 
 export const Dashboard: FunctionComponent = () => {
-   return <h1>asd</h1>
+   return <Container>
+      <NavWrapper>
+         <Navigation/>
+      </NavWrapper>
+          
+      <ContentWrapper>
+         as
+      </ContentWrapper>
+   </Container>
 }
