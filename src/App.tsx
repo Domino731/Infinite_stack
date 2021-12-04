@@ -30,7 +30,8 @@ function App() {
 
             {/* dashboard - protected, only for logged users */}
             <Route path="/" element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/*" element={<Dashboard />}>
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

@@ -25,14 +25,17 @@ interface PropsListItemOpen {
   active?: boolean;
 }
 export const ListText = styled.div<{ active: boolean }>`
-  padding: 6px 16px;
+  padding: 9px 23px;
   border-radius: 9px;
+  background-color: ${(props) => props.active && "#f2ecec"};
+  color: ${(props) => props.active && props.theme.color.black};
+  position: relative;
   &:hover {
     color: ${(props) => props.theme.color.black};
     cursor: pointer;
     background-color: ${(props) => props.theme.color.whitePrimary};
   }
-  position: relative;
+
   i[class="fas fa-chevron-down"] {
     right: 21px;
     position: absolute;
@@ -40,6 +43,7 @@ export const ListText = styled.div<{ active: boolean }>`
     transition: 0.2s;
     transform: ${(props) => (props.active ? "rotate(180deg)" : "rotate(0deg)")};
   }
+
   &:hover i[class="fas fa-chevron-down"] {
     transform: rotate(180deg);
   }
@@ -53,7 +57,7 @@ export const ListItem = styled.li<PropsListItemOpen>`
 
   a {
     display: block;
-    padding: 6px 16px;
+    padding: 9px 23px;
     border-radius: 9px;
     color: inherit;
     &:hover {
@@ -63,8 +67,9 @@ export const ListItem = styled.li<PropsListItemOpen>`
     }
   }
   i {
+    text-align: left;
     display: inline-block;
-    min-width: 1.6em;
+    min-width: 2em;
   }
 `;
 

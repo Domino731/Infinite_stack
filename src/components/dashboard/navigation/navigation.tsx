@@ -47,7 +47,7 @@ export const Navigation: FunctionComponent = () => {
         <NavList>
           {/* overview panel link */}
           <ListItem active={false}>
-            <Link to="/">
+            <Link to="/dashboard/overview">
               <i className="far fa-compass" /> Overview
             </Link>
           </ListItem>
@@ -61,13 +61,13 @@ export const Navigation: FunctionComponent = () => {
             {activeList.teams && (
               <NestedList>
                 <NestedListItem animationDelay={0}>
-                  <Link to="/">Spacex</Link>
+                  <Link to="/dashboard/team:123">Spacex</Link>
                 </NestedListItem>
                 <NestedListItem animationDelay={0.1}>
-                  <Link to="/">Microsoft</Link>
+                  <Link to="/dashboard/team:123">Microsoft</Link>
                 </NestedListItem>
                 <NestedListItem animationDelay={0.3}>
-                  <Link to="/">Apple</Link>
+                  <Link to="/dashboard/team:123">Apple</Link>
                 </NestedListItem>
               </NestedList>
             )}
@@ -83,20 +83,20 @@ export const Navigation: FunctionComponent = () => {
             {activeList.projects && (
               <NestedList>
                 <NestedListItem animationDelay={0}>
-                  <Link to="/">Game</Link>
+                  <Link to="/dashboard/project:123">Game</Link>
                 </NestedListItem>
                 <NestedListItem animationDelay={0.1}>
-                  <Link to="/">React</Link>
+                  <Link to="/dashboard/project:123">React</Link>
                 </NestedListItem>
                 <NestedListItem animationDelay={0.3}>
-                  <Link to="/">Angular training</Link>
+                  <Link to="/dashboard/project:123">Angular training</Link>
                 </NestedListItem>
               </NestedList>
             )}
           </ListItemOpen>
 
           <ListItem active={false}>
-            <Link to="/">
+            <Link to="/dashboard/calendar">
               <i className="far fa-calendar-alt" /> Calendar
             </Link>
           </ListItem>
