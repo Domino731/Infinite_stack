@@ -59,11 +59,13 @@ export const ListItem = styled.li<PropsListItemOpen>`
     display: block;
     padding: 9px 23px;
     border-radius: 9px;
-    color: inherit;
+    color: ${(props) => (props.active ? "#fff" : "inherit")};
+    background: ${(props) => props.active && props.theme.gradient.sunshine};
     &:hover {
-      color: ${(props) => props.theme.color.black};
+      color: ${(props) => !props.active && props.theme.color.black};
       cursor: pointer;
-      background-color: ${(props) => props.theme.color.whitePrimary};
+      background-color: ${(props) =>
+        !props.active && props.theme.color.whitePrimary};
     }
   }
   i {
@@ -91,12 +93,24 @@ const showNestedListItem = keyframes`
   }
 `;
 
-export const NestedListItem = styled.li<{ animationDelay?: number }>`
+export const NestedListItem = styled.li<{
+  animationDelay?: number;
+  active?: boolean;
+}>`
   transform: scale(0%);
   animation: 0.2s ${showNestedListItem} forwards;
   animation-delay: ${(props) => props.animationDelay + "s"};
+  margin-bottom: 5px;
   a {
+    color: ${(props) => (props.active ? "#fff" : "inherit")};
     appearance: none;
     font-size: 19px;
+    background: ${(props) => props.active && props.theme.gradient.sunshine};
+    &:hover {
+      color: ${(props) => (props.active ? "fff" : props.theme.color.black)};
+      cursor: pointer;
+      background-color: ${(props) =>
+        !props.active && props.theme.color.whitePrimary};
+    }
   }
 `;

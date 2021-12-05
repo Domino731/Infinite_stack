@@ -1,36 +1,45 @@
-import { FunctionComponent, useState } from "react";
-import { Link } from "react-router-dom";
+import { FunctionComponent, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ListItemOpen, ListText, NestedList, NestedListItem } from "../styles";
 
 /** list with community subsections */
-export const Community : FunctionComponent = () => {
+export const Community: FunctionComponent = () => {
+  // references
+  const path = useParams();
 
-     // flag to toggle nested  list
-     const [activeList, setActiveList] = useState<boolean>(false);
+  // flag to toggle nested  list
+  const [activeList, setActiveList] = useState<boolean>(false);
 
-     /** toggle activeList state */
-     const handleChangeActiveList = () => setActiveList(!activeList);
+  // state with name of the actual selected section
+  const [activeSection, setActiveSection] = useState<string>("");
 
-     return <ListItemOpen active={false}>
+  /** toggle activeList state */
+  const handleChangeActiveList = () => setActiveList(!activeList);
 
-     <ListText active={activeList} onClick={handleChangeActiveList}>
-       <i className="fas fa-users" /> Community
-       <i className="fas fa-chevron-down" />
-     </ListText>
+  useEffect(() => {
+    return setActiveSection(window.location.pathname);
+  }, [path]);
 
-     {activeList && (
-       <NestedList>
-         <NestedListItem animationDelay={0}>
-           <Link to="/">Articles</Link>
-         </NestedListItem>
-         <NestedListItem animationDelay={0.1}>
-           <Link to="/">Disscussion boards</Link>
-         </NestedListItem>
-         <NestedListItem animationDelay={0.3}>
-           <Link to="/">Events</Link>
-         </NestedListItem>
-       </NestedList>
-     )}
+  return (
+    <ListItemOpen active={false}>
+      <ListText active={activeList} onClick={handleChangeActiveList}>
+        <i className="fas fa-users" /> Community
+        <i className="fas fa-chevron-down" />
+      </ListText>
 
-   </ListItemOpen>
-}
+      {activeList && (
+        <NestedList>
+          <NestedListItem animationDelay={0} active={activeSection === '/dashboard/community/articles'}>
+            <Link to="community/articles">Articles</Link>
+          </NestedListItem>
+          <NestedListItem animationDelay={0.1} active={activeSection === '/dashboard/community/discussionBoards'}>
+            <Link to="community/discussionBoards">Disscussion boards</Link>
+          </NestedListItem>
+          <NestedListItem animationDelay={0.3} active={activeSection === '/dashboard/community/events'}>
+            <Link to="community/events">Events</Link>
+          </NestedListItem>
+        </NestedList>
+      )}
+    </ListItemOpen>
+  );
+};
