@@ -10,7 +10,10 @@ import {
   NestedList,
   NestedListItem,
 } from "../styles";
+import { Community } from "./community";
+import { Projects } from "./projects";
 import { LogoGraphic, Title, TitleWrapper } from "./styles";
+import { Teams } from "./teams";
 
 /**
  * Component with navigation links to specific sections
@@ -52,77 +55,30 @@ export const Navigation: FunctionComponent = () => {
             </Link>
           </ListItem>
 
-          <ListItemOpen active={activeList.teams}>
-            <ListText active={activeList.teams}  onClick={() => handleChangeActiveList("teams")}>
-              <i className="fas fa-trophy" /> Teams{" "}
-              <i className="fas fa-chevron-down" />
-            </ListText>
+          {/* list with teams */}
+          <Teams />
 
-            {activeList.teams && (
-              <NestedList>
-                <NestedListItem animationDelay={0}>
-                  <Link to="/dashboard/team:123">Spacex</Link>
-                </NestedListItem>
-                <NestedListItem animationDelay={0.1}>
-                  <Link to="/dashboard/team:123">Microsoft</Link>
-                </NestedListItem>
-                <NestedListItem animationDelay={0.3}>
-                  <Link to="/dashboard/team:123">Apple</Link>
-                </NestedListItem>
-              </NestedList>
-            )}
-          </ListItemOpen>
+          {/* list with actual projects */}
+          <Projects />
 
-          <ListItemOpen active={false}>
-
-            <ListText active={activeList.projects} onClick={() => handleChangeActiveList("projects")}>
-              <i className="fas fa-tools" /> Projects{" "}
-              <i className="fas fa-chevron-down" />
-            </ListText>
-
-            {activeList.projects && (
-              <NestedList>
-                <NestedListItem animationDelay={0}>
-                  <Link to="/dashboard/project:123">Game</Link>
-                </NestedListItem>
-                <NestedListItem animationDelay={0.1}>
-                  <Link to="/dashboard/project:123">React</Link>
-                </NestedListItem>
-                <NestedListItem animationDelay={0.3}>
-                  <Link to="/dashboard/project:123">Angular training</Link>
-                </NestedListItem>
-              </NestedList>
-            )}
-          </ListItemOpen>
-
+          {/* calendar */}
           <ListItem active={false}>
             <Link to="/dashboard/calendar">
               <i className="far fa-calendar-alt" /> Calendar
             </Link>
           </ListItem>
 
-          <ListItemOpen active={false}>
+          {/* calendar */}
+          <ListItem active={false}>
+            <Link to="/dashboard/calendar">
+              <i className="fas fa-user-circle" /> Profile
+            </Link>
+          </ListItem>
 
-            <ListText active={activeList.community} onClick={() => handleChangeActiveList("community")}>
-              <i className="fas fa-users" /> Community
-              <i className="fas fa-chevron-down" />
-            </ListText>
+          {/* community subsections */}
+          <Community />
 
-            {activeList.community && (
-              <NestedList>
-                <NestedListItem animationDelay={0}>
-                  <Link to="/">Game</Link>
-                </NestedListItem>
-                <NestedListItem animationDelay={0.1}>
-                  <Link to="/">React</Link>
-                </NestedListItem>
-                <NestedListItem animationDelay={0.3}>
-                  <Link to="/">Angular training</Link>
-                </NestedListItem>
-              </NestedList>
-            )}
-          </ListItemOpen>
-
+          {/* settings */}
           <ListItem active={false}>
             <Link to="/">
               <i className="fas fa-cogs" /> Settings

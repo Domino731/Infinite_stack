@@ -14,6 +14,7 @@ import { Navigation } from "./navigation/navigation";
 
 import { Container, ContentWrapper, NavWrapper } from "./styles";
 
+/** component which is gathering content for user dashboard - overview, team, profile, */
 export const Dashboard: FunctionComponent = () => {
    return <Container>
       <NavWrapper>
@@ -32,7 +33,6 @@ export const Dashboard: FunctionComponent = () => {
                <Route path="/community/discussionBoards" element={<DiscussionBoards/>}/>
                <Route path="/community/articles" element={<Articles/>}/>
                <Route path="/settings" element={<Settings/>}/>
-
             </Routes>
       </ContentWrapper>
 
