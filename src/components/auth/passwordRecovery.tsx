@@ -1,9 +1,7 @@
-import { error } from "console";
 import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AuthForm,
-  AuthFormWrapper,
   AuthFormWrapperPasswordRecovery,
   AuthIconWrapper,
   AuthInput,

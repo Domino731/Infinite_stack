@@ -42,7 +42,7 @@ export const Opening: FunctionComponent = () => {
       </OpeningContent>
 
       <ImageWrapper>
-          <img src={openingGraphic}/>
+          <img src={openingGraphic} alt='Team meeting'/>
       </ImageWrapper>
     </OpeningContainer>
   );

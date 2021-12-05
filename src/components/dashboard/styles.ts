@@ -43,10 +43,6 @@ export const ListText = styled.div<{ active: boolean }>`
     transition: 0.2s;
     transform: ${(props) => (props.active ? "rotate(180deg)" : "rotate(0deg)")};
   }
-
-  &:hover i[class="fas fa-chevron-down"] {
-    transform: rotate(180deg);
-  }
 `;
 
 export const ListItem = styled.li<PropsListItemOpen>`

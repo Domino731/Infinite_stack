@@ -21,31 +21,6 @@ export const Teams: FunctionComponent = () => {
   }, [path]);
 
   return (
-    // <ListItemOpen active={activeList}>
-    //   <ListText active={activeList} onClick={handleChangeActiveList}>
-    //     <i className="fas fa-trophy" /> Teams
-    //     <i className="fas fa-chevron-down" />
-    //   </ListText>
-
-    //   {activeList && (
-    //     <NestedList>
-    //       <NestedListItem animationDelay={0} active={false}>
-    //         <Link to="/dashboard/team:123">Spacex</Link>
-    //       </NestedListItem>
-
-    //       <NestedListItem animationDelay={0} active={false}>
-    //         <Link to="/dashboard/team:123">Spacex</Link>
-    //       </NestedListItem>
-
-    //       {/* <NestedListItem animationDelay={0.1}>
-    //         <Link to="/dashboard/team:123">Microsoft</Link>
-    //       </NestedListItem>
-    //       <NestedListItem animationDelay={0.3}>
-    //         <Link to="/dashboard/team:123">Apple</Link>
-    //       </NestedListItem> */}
-    //     </NestedList>
-    //   )}
-    // </ListItemOpen>
     <ListItemOpen active={false}>
     <ListText active={activeList} onClick={handleChangeActiveList}>
       <i className="fas fa-trophy" /> Teams

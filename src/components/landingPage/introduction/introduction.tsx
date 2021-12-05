@@ -9,7 +9,7 @@ import introductionGraphic from "../../../images/landing-page/introduction.jpg";
   return (
     <IntroductionContainer>
       <GraphicContainer>
-         <img src={introductionGraphic}/>
+         <img src={introductionGraphic} alt='meeting'/>
          {/* <a href='https://www.freepik.com/vectors/abstract'>Abstract vector created by vectorjuice - www.freepik.com</a> */}
       </GraphicContainer>
 

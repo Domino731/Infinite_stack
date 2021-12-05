@@ -1,4 +1,3 @@
-import { Props } from "react";
 import styled from "styled-components";
 import { gradients } from "../../../properties/gradients";
 export const IntroductionContainer = styled.div`

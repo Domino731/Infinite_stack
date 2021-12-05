@@ -4,11 +4,7 @@ import logo from "../../../images/general/logo.svg";
 
 import {
   ListItem,
-  ListItemOpen,
-  ListText,
   NavList,
-  NestedList,
-  NestedListItem,
 } from "../styles";
 import { Community } from "./community";
 import { Projects } from "./projects";
