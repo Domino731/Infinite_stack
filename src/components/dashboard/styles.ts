@@ -106,7 +106,12 @@ export const LogoutBtn = styled.button`
     color: ${(props) => props.theme.color.black};
   }
 `;
-
+export const CopyrightText = styled.p`
+  margin-top: 60px;
+  font-size: 16px;
+  color: ${(props) => props.theme.color.black};
+  text-align: center;
+`;
 export const NestedListItem = styled.li<{
   animationDelay?: number;
   active?: boolean;

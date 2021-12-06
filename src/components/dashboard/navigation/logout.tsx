@@ -3,7 +3,7 @@ import {  LogoutBtn, LogoutWrapper } from "../styles"
 import { auth } from "../../../firebase";
 import { signOut } from "firebase/auth";
 
-
+/** component with button by which user can logout*/
 export const Logout: FunctionComponent = () => {
 
     /** sign out the current user */

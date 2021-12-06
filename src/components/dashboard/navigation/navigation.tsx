@@ -7,6 +7,7 @@ import {
   NavList,
 } from "../styles";
 import { Community } from "./community";
+import { Copyright } from "./copyright";
 import { Logout } from "./logout";
 import { Projects } from "./projects";
 import { LogoGraphic, Title, TitleWrapper } from "./styles";
@@ -77,6 +78,9 @@ export const Navigation: FunctionComponent = () => {
 
       {/* logout button */}
       <Logout/>
+
+      {/* copyright text */}
+      <Copyright />
     </>
   );
 };
