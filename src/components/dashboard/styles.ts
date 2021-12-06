@@ -88,6 +88,24 @@ const showNestedListItem = keyframes`
     transform: scale(100%);
   }
 `;
+export const LogoutWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 92px;
+`;
+export const LogoutBtn = styled.button`
+  font-size: 18px;
+  padding: 5px 22px;
+  color: ${(props) => props.theme.color.silver};
+  border-radius: 5px;
+  transition: 0.1s;
+  border: none;
+  letter-spacing: 0.06em;
+  &:hover {
+    background-color: ${(props) => props.theme.color.whitePrimary};
+    color: ${(props) => props.theme.color.black};
+  }
+`;
 
 export const NestedListItem = styled.li<{
   animationDelay?: number;
