@@ -1,7 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import logo from "../../../images/general/logo.svg";
-
 import {
   ListItem,
   NavList,
@@ -10,8 +8,8 @@ import { Community } from "./community";
 import { Copyright } from "./copyright";
 import { Logout } from "./logout";
 import { Projects } from "./projects";
-import { LogoGraphic, Title, TitleWrapper } from "./styles";
 import { Teams } from "./teams";
+import { NavTitle } from "./title";
 
 /**
  * Component with navigation links to specific sections
@@ -30,10 +28,8 @@ export const Navigation: FunctionComponent = () => {
 
   return (
     <>
-      <TitleWrapper>
-        <LogoGraphic src={logo} />
-        <Title>Infinite_stack</Title>
-      </TitleWrapper>
+    
+      <NavTitle/>
 
       <nav>
         <NavList>
