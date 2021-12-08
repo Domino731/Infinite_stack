@@ -40,7 +40,7 @@ export const Teams: FunctionComponent = () => {
         </NestedListItem>
 
         <NestedListItem animationDelay={0.5} active={activeSection === '/dashboard/project:1'}>
-          <Link to="/dashboard/project:1">   <i className="fas fa-plus-square"/>New team</Link>
+          <Link to="/dashboard/team/create">   <i className="fas fa-plus-square"/>New team</Link>
         </NestedListItem>
       </NestedList>
     )}

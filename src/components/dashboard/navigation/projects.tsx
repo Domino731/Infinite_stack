@@ -40,7 +40,7 @@ export const Projects: FunctionComponent = () => {
           <Link to="/dashboard/project:1">Angular training</Link>
         </NestedListItem>
         <NestedListItem animationDelay={0.5} active={activeSection === '/dashboard/project:1'}>
-          <Link to="/dashboard/project:1">   <i className="fas fa-plus-square"/>New project</Link>
+          <Link to="/dashboard/project/create">   <i className="fas fa-plus-square"/>New project</Link>
         </NestedListItem>
       </NestedList>
     )}
