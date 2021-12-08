@@ -38,6 +38,10 @@ export const Teams: FunctionComponent = () => {
         <NestedListItem animationDelay={0.3} active={activeSection === '/dashboard/team:1'}>
           <Link to="/dashboard/team:1">Siper boiz</Link>
         </NestedListItem>
+
+        <NestedListItem animationDelay={0.5} active={activeSection === '/dashboard/project:1'}>
+          <Link to="/dashboard/project:1">   <i className="fas fa-plus-square"/>New team</Link>
+        </NestedListItem>
       </NestedList>
     )}
   </ListItemOpen>
