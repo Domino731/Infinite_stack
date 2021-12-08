@@ -39,7 +39,7 @@ test("Checking wether component is catching password requirements error", async 
 });
 
 test("Checking wether component is catching e-mail requirements error", async () => {
-  const { getByText, getByLabelText, getByPlaceholderText } = render(
+  const { getByText, getByPlaceholderText } = render(
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <SignUp />
