@@ -36,6 +36,10 @@ export interface IFSettingsStateFlag {
   delete: boolean;
 }
 
+export interface IFSettingsHeaderProps {
+  flags: IFSettingsStateFlag;
+  changeFlagFnc: (key: "general" | "password" | "delete") => void;
+}
 export interface IFNavigationActiveListState {
   teams: boolean;
   projects: boolean;

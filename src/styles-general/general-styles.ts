@@ -16,6 +16,7 @@ export const HeaderParagraph = styled.p`
 export const HeaderButtonsBar = styled.div`
   margin-top: 10px;
 `;
+export const SectionContent = styled.section``;
 export const HeaderBtn = styled.button`
   font-size: 0.7em;
   padding: 0.2em 0.6em;
