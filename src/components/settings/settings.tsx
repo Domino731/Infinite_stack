@@ -5,6 +5,7 @@ import { DeleteAccount } from "./delete/deleteAccount";
 import { GeneralInfo } from "./generalInfo/generalInfo";
 import { SettingsHeader } from "./header/header";
 import { Password } from "./password/password";
+import { SettingContentContainer } from "./styles";
 
 export const Settings: FunctionComponent = () => {
   // object with flag necessary for toggling component content
@@ -29,11 +30,11 @@ export const Settings: FunctionComponent = () => {
     <>
       {/* header with buttons by which user can toggle components */}
       <SettingsHeader flags={flag} changeFlagFnc={handleChangeFlag} />
-      <SectionContent>
+      <SettingContentContainer>
         {flag.general && <GeneralInfo />}
         {flag.password && <Password />}
         {flag.delete && <DeleteAccount />}
-      </SectionContent>
+      </SettingContentContainer>
     </>
   );
 };
