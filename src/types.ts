@@ -30,7 +30,11 @@ export interface IFActionIntroductionCard {
 }
 export {};
 
-// Navigation
+export interface IFSettingsStateFlag {
+  general: boolean;
+  password: boolean;
+  delete: boolean;
+}
 
 export interface IFNavigationActiveListState {
   teams: boolean;

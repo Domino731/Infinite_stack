@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react"
 import { HeaderBtn, HeaderButtonsBar, HeaderParagraph, SectionHeader, SectionTitle } from "../../../styles-general/general-styles"
-import { Header } from "../../landingPage/header/header"
 
 export const SettingsHeader : FunctionComponent = () => {
+
     return <SectionHeader>
         <SectionTitle>Settings</SectionTitle>
         <HeaderParagraph>Manage your account settings</HeaderParagraph>
