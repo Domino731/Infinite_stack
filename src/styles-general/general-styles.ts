@@ -17,16 +17,23 @@ export const HeaderButtonsBar = styled.div`
   margin-top: 10px;
 `;
 export const SectionContent = styled.section``;
-export const HeaderBtn = styled.button`
+export const HeaderBtn = styled.button<{ active: boolean }>`
   font-size: 0.7em;
-  padding: 0.2em 0.6em;
+  padding: 0.2em 0.8em;
   margin-right: 0.1em;
   border: none;
   transition: 0.1s;
+  background-color: ${(props) => props.active && "#9ef01a"};
+  color: ${(props) => props.active && "#fff"};
+  border-bottom: ${(props) =>
+    props.active
+      ? "3px solid #70e000"
+      : `3px solid ${props.theme.color.whitePrimary}`};
   border-radius: ${(props) => props.theme.radius.buttonS}
     ${(props) => props.theme.radius.buttonS} 0 0;
   &:hover {
-    background-color: ${(props) => props.theme.color.whitePrimary};
+    background-color: ${(props) =>
+      !props.active && props.theme.color.whitePrimary};
   }
   i {
     padding-right: 0.4em;
