@@ -19,6 +19,10 @@ export const theme = {
     yellow: "fee440",
     shadow: "#a29797",
     inputBorder: "#B5A9A9",
+    boxShadow: "#d2d2d2",
+  },
+  radius: {
+    buttonS: "4px",
   },
   gradient: {
     purple: "linear-gradient(to right, #7f00ff, #e100ff);",
