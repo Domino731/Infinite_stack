@@ -15,5 +15,11 @@ export const SettingsForm = styled.form`
   height: 500px;
   background: black;
 
-  ${setGradientShadow()}
+  ${setGradientShadow({
+    background: `linear-gradient(to right, #009fff, #ec2f4b)`,
+    transition: "0.3s",
+    activeAllTime: false,
+    hoverEffect: `transform: translate(-50%) rotate(
+        -9deg);`,
+  })}
 `;
