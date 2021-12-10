@@ -30,10 +30,8 @@ export const GeneralInfo: FunctionComponent = () => {
 
   useEffect(()=> {
          auth.onAuthStateChanged(user => {
-             // @ts-ignore
-             console.log(user.email)
              setData(prev => ({...prev,
-                // @ts-ignore
+                 // @ts-ignore
                 displayName: user.displayName,
                 // @ts-ignore
                 email:  user.email ? user.email : ''
@@ -42,19 +40,28 @@ export const GeneralInfo: FunctionComponent = () => {
   }, []);
 
 
+  /** change data state */
+ const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+     const {name, value} = e.target;
+     return setData(prev => ({
+         ...prev,
+         [name]: value
+     }));
+ } 
+
   return (
     <SettingsForm>
       <FormColumn>
         <FormItem left={false}>
           <Label>
             Name
-            <Input />
+            <Input  name='name' value={data.name} onChange={handleChangeData}/>
           </Label>
         </FormItem>
         <FormItem left={false}>
           <Label>
             Display name
-            <Input />
+            <Input  name='displayName' value={data.displayName ? data.displayName : ''} onChange={handleChangeData}/>
           </Label>
         </FormItem>
       </FormColumn>
@@ -63,7 +70,7 @@ export const GeneralInfo: FunctionComponent = () => {
         <FormItem left={true}>
           <Label>
             Surname
-            <Input />
+            <Input  name='surname' value={data.surname} onChange={handleChangeData} />
           </Label>
         </FormItem>
         <FormItem left={true}>
