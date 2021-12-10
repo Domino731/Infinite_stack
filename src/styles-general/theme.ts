@@ -20,9 +20,12 @@ export const theme = {
     shadow: "#a29797",
     inputBorder: "#B5A9A9",
     boxShadow: "#d2d2d2",
+    whiteSmoke: "#eff1f2",
   },
   radius: {
+    inputM: "7px",
     buttonS: "4px",
+    buttonM: "7px",
     L: "23px",
   },
   gradient: {
