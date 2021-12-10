@@ -1,9 +1,47 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { auth } from "../../../firebase";
 
-import { FormColumn, FormItem, Label, SettingsForm, Input, BtnWrapper, Button } from "../styles";
+import {
+  FormColumn,
+  FormItem,
+  Label,
+  SettingsForm,
+  Input,
+  BtnWrapper,
+  Button,
+} from "../styles";
 
 /** component with general info about the user - name, surname, email, username */
 export const GeneralInfo: FunctionComponent = () => {
+
+
+  // state with data about user's account
+  const [data, setData] = useState<{
+    name: string;
+    surname: string;
+    displayName: string | null;
+    email: string;
+  }>({
+    name: "",
+    surname: "",
+    displayName: "",
+    email: ''
+  });
+
+  useEffect(()=> {
+         auth.onAuthStateChanged(user => {
+             // @ts-ignore
+             console.log(user.email)
+             setData(prev => ({...prev,
+                // @ts-ignore
+                displayName: user.displayName,
+                // @ts-ignore
+                email:  user.email ? user.email : ''
+            }))
+         })
+  }, []);
+
+
   return (
     <SettingsForm>
       <FormColumn>
@@ -21,8 +59,7 @@ export const GeneralInfo: FunctionComponent = () => {
         </FormItem>
       </FormColumn>
 
-
-      <FormColumn >
+      <FormColumn>
         <FormItem left={true}>
           <Label>
             Surname
@@ -32,13 +69,13 @@ export const GeneralInfo: FunctionComponent = () => {
         <FormItem left={true}>
           <Label>
             E-mail
-            <Input />
+            <Input readOnly value={data.email} block={true}/>
           </Label>
         </FormItem>
       </FormColumn>
 
       <BtnWrapper>
-          <Button>Save Changes</Button>
+        <Button>Save Changes</Button>
       </BtnWrapper>
     </SettingsForm>
   );

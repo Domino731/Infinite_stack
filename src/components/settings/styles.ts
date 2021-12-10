@@ -40,16 +40,18 @@ export const Label = styled.label`
   letter-spacing: 0.073em;
   font-weight: 500;
 `;
-export const Input = styled.input`
+export const Input = styled.input<{ block?: boolean }>`
   display: block;
   width: 100%;
   border: 2px solid ${(props) => props.theme.color.whiteSmoke};
   margin-bottom: 10px;
   margin-top: 4px;
-  font-size: 0.7em;
-  padding: 7px 4px;
+  font-size: 0.9em;
+  padding: 7px 6px;
   border-radius: ${(props) => props.theme.radius.inputM};
   font-family: inherit;
+  color: ${(props) => props.block && "#d4dade"};
+  background: ${(props) => props.block && "#f6f6f6"};
 `;
 export const BtnWrapper = styled.div`
   display: flex;
