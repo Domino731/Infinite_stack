@@ -19,7 +19,7 @@ export const setGradientShadow = (
   return `position: relative;
   &::after {
     top: 0;
-    border-radius: 24px;
+    border-radius: inherit;
     left: 50%;
     right: 50%;
     -webkit-transform: translate(-50%) rotate(9deg);

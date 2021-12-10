@@ -23,6 +23,7 @@ export const theme = {
   },
   radius: {
     buttonS: "4px",
+    L: "23px",
   },
   gradient: {
     purple: "linear-gradient(to right, #7f00ff, #e100ff);",
