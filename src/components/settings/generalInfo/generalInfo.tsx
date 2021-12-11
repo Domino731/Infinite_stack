@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { auth } from "../../../firebase";
-
+import { getAuth, updateProfile } from "firebase/auth";
 import {
   FormColumn,
   FormItem,
@@ -73,8 +73,26 @@ export const GeneralInfo: FunctionComponent = () => {
      }));
  } 
 
+ const updateDisplayName = () => {
+   // @ts-ignore
+   return updateProfile(auth.currentUser, {
+      displayName: data.displayName
+   }).then(profile => {
+     console.log('your profile has been updated');
+   })
+   .catch(err => {
+     console.log(err);
+   });
+ }
+
+
+ /** update user's profile in firebase database*/
+ const handleUpdateProfile = (e: React.FormEvent<HTMLFormElement>) => {
+   e.preventDefault();
+   updateDisplayName();
+ }
   return (
-    <SettingsForm>
+    <SettingsForm onSubmit={handleUpdateProfile}>
       <FormColumn>
         <FormItem left={false}>
           <Label>
