@@ -19,7 +19,7 @@ export const GeneralInfo: FunctionComponent = () => {
   const [data, setData] = useState<{
     name: string;
     surname: string;
-    displayName: string | null;
+    displayName: string;
     email: string;
   }>({
     name: "",
@@ -32,7 +32,7 @@ export const GeneralInfo: FunctionComponent = () => {
          auth.onAuthStateChanged(user => {
              setData(prev => ({...prev,
                  // @ts-ignore
-                displayName: user.displayName,
+                displayName: user.displayName ? user.displayName : '',
                 // @ts-ignore
                 email:  user.email ? user.email : ''
             }))
@@ -61,7 +61,7 @@ export const GeneralInfo: FunctionComponent = () => {
         <FormItem left={false}>
           <Label>
             Display name
-            <Input  name='displayName' value={data.displayName ? data.displayName : ''} onChange={handleChangeData}/>
+            <Input  name='displayName' value={data.displayName} onChange={handleChangeData}/>
           </Label>
         </FormItem>
       </FormColumn>
@@ -76,7 +76,7 @@ export const GeneralInfo: FunctionComponent = () => {
         <FormItem left={true}>
           <Label>
             E-mail
-            <Input readOnly value={data.email} block={true}/>
+            <Input readOnly value={data.email} block={true} title='You cannot change e-mail'/>
           </Label>
         </FormItem>
       </FormColumn>
