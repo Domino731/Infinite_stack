@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { auth } from "../../../firebase";
-import { getAuth, updateProfile } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 import {
   FormColumn,
   FormItem,
@@ -23,8 +23,10 @@ import updatedDataIcon from "../../../images/icons/updatedData.svg";
 import errorIcon from "../../../images/icons/errorPrimary.svg";
 import { IFSettingsGeneralDataState } from "../../../types";
 
-/** component with general info about the user - name, surname, email, username */
+/** component with form to update general info about the user - name, surname, email, username */
 export const GeneralInfo: FunctionComponent = () => {
+  // state with base data, needed to compare this information to data passed by the user in order
+  // to avoid the unnecessary auth actions
   const [baseData, setBaseData] = useState<IFSettingsGeneralDataState<string>>({
     name: "",
     surname: "",
@@ -51,6 +53,8 @@ export const GeneralInfo: FunctionComponent = () => {
   // flag which is pointing on that if the user's data was updated successfully
   const [success, setSuccess] = useState<boolean>(false);
 
+  // flag by which an error notification is displaying when user does not enter new data,
+  // it helps to preventing for unnecessary auth actions
   const [error, setError] = useState<boolean>(false);
 
   // set auth data when component will mount
@@ -74,12 +78,14 @@ export const GeneralInfo: FunctionComponent = () => {
     });
   }, []);
 
+  /** toggle the specific key in the willChange state, check if the data passed by user isnt same as in the baseData state */
   const checkIsDataWillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     // remove error
     setError(false);
 
+    // set willChange state
     return setWillChange((prev) => ({
       ...prev,
       // @ts-ignore
@@ -96,6 +102,7 @@ export const GeneralInfo: FunctionComponent = () => {
     }));
   };
 
+  /** firebase auth operation -> update user's displayName */
   const updateDisplayName = () => {
     // @ts-ignore
     return updateProfile(auth.currentUser, {
@@ -139,11 +146,14 @@ export const GeneralInfo: FunctionComponent = () => {
     });
   };
 
-  /** update user's profile in firebase database*/
+  /** trigger specific functions, which are responsible for updating user's account, also check if the data passed by the user is different from the
+   * baseData state in order to avoid unnecessary update operation
+   */
   const handleUpdateProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     data.displayName !== baseData.displayName && updateDisplayName();
 
+    // check if the data is different
     if (data.displayName === baseData.displayName) {
       return setError(true);
     } else {
@@ -152,11 +162,14 @@ export const GeneralInfo: FunctionComponent = () => {
   };
   return (
     <>
+      {/* form to changing account data */}
       {!success && (
         <SettingsForm onSubmit={handleUpdateProfile}>
-
+          {/* title */}
           <Title>Change general data</Title>
+
           <FormColumn>
+            {/* name input */}
             <FormItem left={false}>
               <Label>
                 Name
@@ -168,6 +181,8 @@ export const GeneralInfo: FunctionComponent = () => {
                 />
               </Label>
             </FormItem>
+
+            {/* display name input */}
             <FormItem left={false}>
               <Label>
                 Display name
@@ -182,6 +197,7 @@ export const GeneralInfo: FunctionComponent = () => {
           </FormColumn>
 
           <FormColumn>
+            {/* surname input */}
             <FormItem left={true}>
               <Label>
                 Surname
@@ -193,6 +209,8 @@ export const GeneralInfo: FunctionComponent = () => {
                 />
               </Label>
             </FormItem>
+
+            {/* e-mail input */}
             <FormItem left={true}>
               <Label>
                 E-mail
@@ -206,7 +224,7 @@ export const GeneralInfo: FunctionComponent = () => {
             </FormItem>
           </FormColumn>
 
-          {/* alerts about data that will changed  */}
+          {/* alerts about what data that will change  */}
 
           {/* display name change notification */}
           {willChange.displayName && (
@@ -245,6 +263,7 @@ export const GeneralInfo: FunctionComponent = () => {
         </SettingsForm>
       )}
 
+       {/* container which is displaying notification about updated data */}
       {success && (
         <SuccessfulNotification>
           <SuccessfulTitle>Your account has been updated</SuccessfulTitle>
