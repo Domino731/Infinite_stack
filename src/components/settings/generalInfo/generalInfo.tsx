@@ -15,15 +15,16 @@ import {
   SuccessfulList,
   SuccessfulListItem,
   SuccessfulBtn,
+  Title,
 } from "../styles";
 
 import alertIcon from "../../../images/icons/alert.svg";
 import updatedDataIcon from "../../../images/icons/updatedData.svg";
+import errorIcon from "../../../images/icons/errorPrimary.svg";
 import { IFSettingsGeneralDataState } from "../../../types";
 
 /** component with general info about the user - name, surname, email, username */
 export const GeneralInfo: FunctionComponent = () => {
-
   const [baseData, setBaseData] = useState<IFSettingsGeneralDataState<string>>({
     name: "",
     surname: "",
@@ -48,7 +49,9 @@ export const GeneralInfo: FunctionComponent = () => {
   });
 
   // flag which is pointing on that if the user's data was updated successfully
-  const [success, setSuccess] = useState<boolean>(true);
+  const [success, setSuccess] = useState<boolean>(false);
+
+  const [error, setError] = useState<boolean>(false);
 
   // set auth data when component will mount
   useEffect(() => {
@@ -60,11 +63,23 @@ export const GeneralInfo: FunctionComponent = () => {
         // @ts-ignore
         email: user.email ? user.email : "",
       }));
+
+      setBaseData((prev) => ({
+        ...prev,
+        // @ts-ignore
+        displayName: user.displayName ? user.displayName : "",
+        // @ts-ignore
+        email: user.email ? user.email : "",
+      }));
     });
   }, []);
 
   const checkIsDataWillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    // remove error
+    setError(false);
+
     return setWillChange((prev) => ({
       ...prev,
       // @ts-ignore
@@ -87,6 +102,8 @@ export const GeneralInfo: FunctionComponent = () => {
       displayName: data.displayName,
     })
       .then(() => {
+        // display notification about what data was changed
+        setSuccess(true);
         console.log("your profile has been updated");
       })
       .catch((err) => {
@@ -94,15 +111,51 @@ export const GeneralInfo: FunctionComponent = () => {
       });
   };
 
+  /** change success state and change data states */
+  const reset = () => {
+    // form will displayed
+    setSuccess(false);
+
+    // hide notifications
+    setWillChange({ name: false, surname: false, displayName: false });
+
+    // set auth data
+    return auth.onAuthStateChanged((user) => {
+      setData((prev) => ({
+        ...prev,
+        // @ts-ignore
+        displayName: user.displayName ? user.displayName : "",
+        // @ts-ignore
+        email: user.email ? user.email : "",
+      }));
+
+      setBaseData((prev) => ({
+        ...prev,
+        // @ts-ignore
+        displayName: user.displayName ? user.displayName : "",
+        // @ts-ignore
+        email: user.email ? user.email : "",
+      }));
+    });
+  };
+
   /** update user's profile in firebase database*/
   const handleUpdateProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateDisplayName();
+    data.displayName !== baseData.displayName && updateDisplayName();
+
+    if (data.displayName === baseData.displayName) {
+      return setError(true);
+    } else {
+      return setError(false);
+    }
   };
   return (
     <>
       {!success && (
         <SettingsForm onSubmit={handleUpdateProfile}>
+
+          <Title>Change general data</Title>
           <FormColumn>
             <FormItem left={false}>
               <Label>
@@ -179,36 +232,50 @@ export const GeneralInfo: FunctionComponent = () => {
             </AlertWrapper>
           )}
 
+          {error && (
+            <AlertWrapper>
+              <img src={errorIcon} alt="Exclamation mark" />
+              <strong>Nothing to update</strong>
+            </AlertWrapper>
+          )}
+
           <BtnWrapper>
             <Button>Save Changes</Button>
           </BtnWrapper>
         </SettingsForm>
       )}
 
-      {success && <SuccessfulNotification> 
+      {success && (
+        <SuccessfulNotification>
           <SuccessfulTitle>Your account has been updated</SuccessfulTitle>
           <SuccessfulList>
-                 {!willChange.displayName && <SuccessfulListItem>
-                      <img src={updatedDataIcon} alt='Data updated'/>
-                      <strong>display name updated</strong>
-                   </SuccessfulListItem>}
+            {willChange.displayName && (
+              <SuccessfulListItem>
+                <img src={updatedDataIcon} alt="Data updated" />
+                <strong>display name changed</strong>
+              </SuccessfulListItem>
+            )}
 
-                   {!willChange.name && <SuccessfulListItem>
-                      <img src={updatedDataIcon} alt='Data updated'/>
-                      <strong>Name updated</strong>
-                   </SuccessfulListItem>}
+            {willChange.name && (
+              <SuccessfulListItem>
+                <img src={updatedDataIcon} alt="Data updated" />
+                <strong>Name changed</strong>
+              </SuccessfulListItem>
+            )}
 
-                   {!willChange.surname && <SuccessfulListItem>
-                      <img src={updatedDataIcon} alt='Data updated'/>
-                      <strong>Surname updated</strong>
-                   </SuccessfulListItem>}
+            {willChange.surname && (
+              <SuccessfulListItem>
+                <img src={updatedDataIcon} alt="Data updated" />
+                <strong>Surname changed</strong>
+              </SuccessfulListItem>
+            )}
           </SuccessfulList>
 
-          
           <BtnWrapper>
-            <SuccessfulBtn>Save Changes</SuccessfulBtn>
+            <SuccessfulBtn onClick={reset}>Back</SuccessfulBtn>
           </BtnWrapper>
-        </SuccessfulNotification>}
+        </SuccessfulNotification>
+      )}
     </>
   );
 };

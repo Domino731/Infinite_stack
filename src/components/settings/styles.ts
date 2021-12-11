@@ -41,6 +41,10 @@ export const SuccessfulNotification = styled.div`
     transform: translate(-50%) rotate(6deg);
   }
 `;
+export const Title = styled.h2`
+  font-size: 34px;
+  margin-bottom: 20px;
+`;
 export const SuccessfulTitle = styled.h2`
   font-size: 29px;
 `;
