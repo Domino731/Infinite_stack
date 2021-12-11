@@ -24,6 +24,43 @@ export const SettingsForm = styled.form`
     hoverEffect: ``,
   })};
 `;
+
+export const SuccessfulNotification = styled.div`
+  width: 100%;
+  background: #fff;
+  border-radius: ${(props) => props.theme.radius.L};
+  box-shadow: 2px 5px 14px #d2d2d2;
+  padding: 50px 30px;
+  ${setGradientShadow({
+    background: `linear-gradient(to right, #56ab2f, #a8e063)`,
+    transition: "0.3s",
+    activeAllTime: false,
+    hoverEffect: ``,
+  })};
+  &::after {
+    transform: translate(-50%) rotate(6deg);
+  }
+`;
+export const SuccessfulTitle = styled.h2`
+  font-size: 29px;
+`;
+export const SuccessfulList = styled.ul`
+  font-size: 20px;
+  margin-top: 25px;
+`;
+export const SuccessfulListItem = styled.li`
+  display: flex;
+  align-items: center;
+  margin-top: 0.6em;
+  img {
+    width: 1.7em;
+    margin-right: 0.4em;
+  }
+  strong {
+    font-size: 1em;
+    color: ${(props) => props.theme.color.blackSecondary};
+  }
+`;
 export const FormColumn = styled.div`
   display: inline-block;
   width: 50%;
@@ -70,6 +107,9 @@ export const Button = styled.button`
     letter-spacing: 0.063em;
   }
 `;
+export const SuccessfulBtn = styled(Button)`
+  background-color: ${(props) => props.theme.color.greenCorrect};
+`;
 
 export const AlertWrapper = styled.div`
   font-size: 20px;
@@ -82,5 +122,6 @@ export const AlertWrapper = styled.div`
   }
   strong {
     font-size: 0.7em;
+    color: ${(props) => props.theme.color.blackSecondary};
   }
 `;

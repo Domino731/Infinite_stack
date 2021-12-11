@@ -39,7 +39,7 @@ export interface IFSettingsGeneralDataState<t> {
   name: t;
   surname: t;
   displayName: t;
-  email: t;
+  email?: t;
 }
 export interface IFSettingsHeaderProps {
   flags: IFSettingsStateFlag;
