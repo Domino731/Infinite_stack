@@ -35,7 +35,12 @@ export interface IFSettingsStateFlag {
   password: boolean;
   delete: boolean;
 }
-
+export interface IFSettingsGeneralDataState<t> {
+  name: t;
+  surname: t;
+  displayName: t;
+  email: t;
+}
 export interface IFSettingsHeaderProps {
   flags: IFSettingsStateFlag;
   changeFlagFnc: (key: "general" | "password" | "delete") => void;

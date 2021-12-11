@@ -70,3 +70,17 @@ export const Button = styled.button`
     letter-spacing: 0.063em;
   }
 `;
+
+export const AlertWrapper = styled.div`
+  font-size: 20px;
+  margin-top: 0.4em;
+  display: flex;
+  align-items: center;
+  img {
+    width: 1.4em;
+    margin-right: 0.3em;
+  }
+  strong {
+    font-size: 0.7em;
+  }
+`;
