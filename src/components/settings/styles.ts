@@ -69,11 +69,16 @@ export const FormColumn = styled.div`
   display: inline-block;
   width: 50%;
 `;
-export const FormItem = styled.div<{ left?: boolean }>`
+export const FormColumnCenter = styled.div`
+  // margin: 0 auto;
+  width: 100%;
+`;
+export const FormItem = styled.div<{ left?: boolean | "none" }>`
   font-size: 20px;
   margin-bottom: 20px;
   border-bottom: 2px solid ${(props) => props.theme.color.whiteSmoke};
   ${(props) => (props.left ? "padding-left: 20px;" : "padding-right: 20px;")};
+  ${(props) => props.left === "none" && "padding: 0;"};
 `;
 export const Label = styled.label`
   display: block;

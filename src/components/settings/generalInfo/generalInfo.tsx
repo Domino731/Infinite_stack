@@ -25,6 +25,7 @@ import { IFSettingsGeneralDataState } from "../../../types";
 
 /** component with form to update general info about the user - name, surname, email, username */
 export const GeneralInfo: FunctionComponent = () => {
+
   // state with base data, needed to compare this information to data passed by the user in order
   // to avoid the unnecessary auth actions
   const [baseData, setBaseData] = useState<IFSettingsGeneralDataState<string>>({
@@ -263,11 +264,12 @@ export const GeneralInfo: FunctionComponent = () => {
         </SettingsForm>
       )}
 
-       {/* container which is displaying notification about updated data */}
+      {/* container which is displaying notification about updated data */}
       {success && (
         <SuccessfulNotification>
           <SuccessfulTitle>Your account has been updated</SuccessfulTitle>
           <SuccessfulList>
+            {/* updated display name */}
             {willChange.displayName && (
               <SuccessfulListItem>
                 <img src={updatedDataIcon} alt="Data updated" />
@@ -275,6 +277,7 @@ export const GeneralInfo: FunctionComponent = () => {
               </SuccessfulListItem>
             )}
 
+            {/* updated name */}
             {willChange.name && (
               <SuccessfulListItem>
                 <img src={updatedDataIcon} alt="Data updated" />
@@ -282,6 +285,7 @@ export const GeneralInfo: FunctionComponent = () => {
               </SuccessfulListItem>
             )}
 
+            {/* updated surname */}
             {willChange.surname && (
               <SuccessfulListItem>
                 <img src={updatedDataIcon} alt="Data updated" />
@@ -290,6 +294,7 @@ export const GeneralInfo: FunctionComponent = () => {
             )}
           </SuccessfulList>
 
+          {/* button with applied function which is responsible for restarting form */}
           <BtnWrapper>
             <SuccessfulBtn onClick={reset}>Back</SuccessfulBtn>
           </BtnWrapper>
