@@ -1,5 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import {
+    AlertWrapper,
     BtnWrapper,
     Button,
     FormColumn,
@@ -7,10 +8,12 @@ import {
   FormItem,
   Input,
   Label,
+  Requirements,
+  RequirementsTitle,
   SettingsForm,
   Title,
 } from "../styles";
-
+import requirementIcon from "../../../images/icons/requirementIcon.svg";
 export const Password: FunctionComponent = () => {
   const [data, setData] = useState<{
     password: string;
@@ -66,7 +69,26 @@ export const Password: FunctionComponent = () => {
               </Label>
             </FormItem>
            </FormColumn>
+         
+           <RequirementsTitle>Password requirements</RequirementsTitle>
 
+           <AlertWrapper>
+              <img src={requirementIcon} alt="Exclamation mark" />
+              <strong>10 characters at least</strong> 
+            </AlertWrapper>
+          
+          
+            <AlertWrapper>
+              <img src={requirementIcon} alt="Exclamation mark" />
+              <strong>1 uppercase letter</strong> 
+            </AlertWrapper>
+
+            
+           <AlertWrapper>
+              <img src={requirementIcon} alt="Exclamation mark" />
+              <strong>1 special character</strong> 
+            </AlertWrapper>
+          
            <BtnWrapper>
                <Button>Change password</Button>
            </BtnWrapper>

@@ -134,3 +134,10 @@ export const AlertWrapper = styled.div`
     color: ${(props) => props.theme.color.blackSecondary};
   }
 `;
+export const RequirementsTitle = styled.h3`
+  font-size: 19px;
+`;
+export const Requirements = styled.div`
+  padding: 7px;
+  font-size: 23px;
+`;
