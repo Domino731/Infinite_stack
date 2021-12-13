@@ -4,17 +4,17 @@ import {
   BtnWrapper,
   Button,
   FormColumn,
-  FormColumnCenter,
   FormItem,
   Input,
   Label,
-  Requirements,
   RequirementsTitle,
   SettingsForm,
   Title,
 } from "../styles";
 import requirementIcon from "../../../images/icons/requirementIcon.svg";
 import errorIcon from "../../../images/icons/errorPrimary.svg";
+import { updatePassword, User } from "firebase/auth";
+import { auth } from "../../../firebase";
 
 export const Password: FunctionComponent = () => {
   const [data, setData] = useState<{
@@ -33,11 +33,7 @@ export const Password: FunctionComponent = () => {
   });
 
   /** check if the new password is correct */
-  const checkPasswordRequirements = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { name, value } = e.target;
-
+  const checkPasswordRequirements = () => {
     // check whether the passwords are same
     if (data.password !== data.passwordRepeat) {
       setError((prev) => ({ ...prev, passwordSame: true }));
@@ -46,28 +42,27 @@ export const Password: FunctionComponent = () => {
     }
 
     // checking special character
-    if(!data.password.match(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/)){
-        setError((prev) => ({ ...prev, special: true}));
-    }
-    else {
-        setError((prev) => ({ ...prev, special: false }));
+    if (!data.password.match(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/)) {
+      setError((prev) => ({ ...prev, special: true }));
+    } else {
+      setError((prev) => ({ ...prev, special: false }));
     }
 
-      // check if the password has a 10 characters at least
-      if (data.password.length < 10) {
-        setError((prev) => ({ ...prev, length: true }));
-      } else {
-        setError((prev) => ({ ...prev, length: false }));
-      }
+    // check if the password has a 10 characters at least
+    if (data.password.length < 10) {
+      setError((prev) => ({ ...prev, length: true }));
+    } else {
+      setError((prev) => ({ ...prev, length: false }));
+    }
 
-      if(/[a-z]/.test(data.password) && /[A-Z]/.test(data.password)){
-        setError((prev) => ({ ...prev, uppercase: true }));
-      }
-      else {
-        setError((prev) => ({ ...prev, uppercase: false }));
-      }
-    
+    // check if the password is containing 1 uppercase character at least
+    if (/[a-z]/.test(data.password) && /[A-Z]/.test(data.password)) {
+      setError((prev) => ({ ...prev, uppercase: true }));
+    } else {
+      setError((prev) => ({ ...prev, uppercase: false }));
+    }
   };
+
   // flag which is pointing on that if the user's password was updated successfully
   const [success, setSuccess] = useState<boolean>(false);
 
@@ -86,10 +81,25 @@ export const Password: FunctionComponent = () => {
     e.preventDefault();
 
     // check if the new password is passing requirements
-    if (data.password === data.passwordRepeat) {
+    if (data.password === data.passwordRepeat
+       && data.password.match(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/) 
+       && data.password.length >= 10 
+       && /[a-z]/.test(data.password) && /[A-Z]/.test(data.password)
+       ) {
+         return updatePassword(auth.currentUser as User , data.password)
+         .then(() => {
+           console.log('Your password has been updated');
+           setSuccess(true);
+         }).catch((err) => {
+           console.log(err)
+         })
     } else {
+         return checkPasswordRequirements(); 
     }
   };
+
+
+  
   return (
     <>
       {!success && (
@@ -130,18 +140,23 @@ export const Password: FunctionComponent = () => {
           <RequirementsTitle>Password requirements</RequirementsTitle>
 
           <AlertWrapper>
-            <img src={!error.length ? requirementIcon : errorIcon} alt="Exclamation mark" />
+            <img
+              src={!error.length ? requirementIcon : errorIcon}
+              alt="Exclamation mark"
+            />
             <strong>10 characters at least</strong>
           </AlertWrapper>
 
           <AlertWrapper>
-            <img src={!error.uppercase ? requirementIcon : errorIcon} alt="Exclamation mark" />
+            <img
+              src={!error.uppercase ? requirementIcon : errorIcon}
+              alt="Exclamation mark"
+            />
             <strong>1 uppercase letter</strong>
           </AlertWrapper>
 
           <AlertWrapper>
-       
-         <img
+            <img
               src={!error.special ? requirementIcon : errorIcon}
               alt="Exclamation mark"
             />
