@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useCallback, useState } from "react";
 import {
   AlertWrapper,
   BtnWrapper,
@@ -42,7 +42,7 @@ export const Password: FunctionComponent = () => {
   const [success, setSuccess] = useState<boolean>(false);
 
   /** check if the new password is correct */
-  const checkPasswordRequirements = () => {
+  const checkPasswordRequirements = useCallback(() => {
     // check whether the passwords are same
     if (data.password !== data.passwordRepeat) {
       setError((prev) => ({ ...prev, passwordSame: true }));
@@ -70,17 +70,17 @@ export const Password: FunctionComponent = () => {
     } else {
       setError((prev) => ({ ...prev, uppercase: false }));
     }
-  };
+  }, []);
 
   /** changing data state */
-  const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     return setData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
+  }, []);
 
  /** change success state and clear data state*/
   const reset = () => {
@@ -89,8 +89,9 @@ export const Password: FunctionComponent = () => {
 
      return setSuccess(false);
   }
+
   /** firebase auth operation - change user's password */
-  const handleResetPassword = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleResetPassword = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // check if the new password is passing requirements
@@ -109,7 +110,7 @@ export const Password: FunctionComponent = () => {
     } else {
          return checkPasswordRequirements(); 
     }
-  };
+  }, []);
 
 
 

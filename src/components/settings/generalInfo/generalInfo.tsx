@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { auth } from "../../../firebase";
 import { updateProfile } from "firebase/auth";
 import {
@@ -80,7 +80,7 @@ export const GeneralInfo: FunctionComponent = () => {
   }, []);
 
   /** toggle the specific key in the willChange state, check if the data passed by user isnt same as in the baseData state */
-  const checkIsDataWillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const checkIsDataWillChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     // remove error
@@ -92,19 +92,19 @@ export const GeneralInfo: FunctionComponent = () => {
       // @ts-ignore
       [name]: value === baseData[name] ? false : true,
     }));
-  };
+  }, []);
 
   /** change data state */
-  const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     return setData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
+  }, []);
 
   /** firebase auth operation -> update user's displayName */
-  const updateDisplayName = () => {
+  const updateDisplayName = useCallback(() => {
     // @ts-ignore
     return updateProfile(auth.currentUser, {
       displayName: data.displayName,
@@ -117,7 +117,7 @@ export const GeneralInfo: FunctionComponent = () => {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, []);
 
   /** change success state and change data states */
   const reset = () => {
