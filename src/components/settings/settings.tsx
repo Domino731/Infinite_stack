@@ -11,8 +11,8 @@ export const Settings: FunctionComponent = () => {
   // object with flag necessary for toggling component content
   const [flag, setFlag] = useState<IFSettingsStateFlag>({
     general: false,
-    password: true,
-    delete: false,
+    password: false,
+    delete: true,
   });
 
   /** change flag state

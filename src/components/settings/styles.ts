@@ -25,6 +25,14 @@ export const SettingsForm = styled.form`
   })};
 `;
 
+export const DeleteForm = styled(SettingsForm)`
+  ${setGradientShadow({
+    background: `linear-gradient(to bottom, #ed213a, #93291e)`,
+    transition: "0.3s",
+    activeAllTime: false,
+    hoverEffect: ``,
+  })};
+`;
 export const SuccessfulNotification = styled.div`
   width: 100%;
   background: #fff;
@@ -69,8 +77,8 @@ export const FormColumn = styled.div`
   display: inline-block;
   width: 50%;
 `;
-export const FormColumnCenter = styled.div`
-  // margin: 0 auto;
+
+export const FormColumnSingle = styled.div`
   width: 100%;
 `;
 export const FormItem = styled.div<{ left?: boolean | "none" }>`
@@ -116,6 +124,9 @@ export const Button = styled.button`
     letter-spacing: 0.063em;
   }
 `;
+export const DeleteButton = styled(Button)`
+  background-color: ${(props) => props.theme.color.red};
+`;
 export const SuccessfulBtn = styled(Button)`
   background-color: ${(props) => props.theme.color.greenCorrect};
 `;
@@ -140,4 +151,9 @@ export const RequirementsTitle = styled.h3`
 export const Requirements = styled.div`
   padding: 7px;
   font-size: 23px;
+`;
+export const WarningText = styled.p`
+  font-size: 20px;
+  text-shadow: 0.03em 0.03em ${(props) => props.theme.color.red};
+  margin-bottom: 20px;
 `;

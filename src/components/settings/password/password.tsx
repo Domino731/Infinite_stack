@@ -39,7 +39,7 @@ export const Password: FunctionComponent = () => {
   });
 
   // flag which is pointing on that if the user's password was updated successfully
-  const [success, setSuccess] = useState<boolean>(true);
+  const [success, setSuccess] = useState<boolean>(false);
 
   /** check if the new password is correct */
   const checkPasswordRequirements = () => {
