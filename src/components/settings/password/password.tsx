@@ -9,12 +9,18 @@ import {
   Label,
   RequirementsTitle,
   SettingsForm,
+  SuccessfulBtn,
+  SuccessfulList,
+  SuccessfulListItem,
+  SuccessfulNotification,
+  SuccessfulTitle,
   Title,
 } from "../styles";
 import requirementIcon from "../../../images/icons/requirementIcon.svg";
 import errorIcon from "../../../images/icons/errorPrimary.svg";
 import { updatePassword, User } from "firebase/auth";
 import { auth } from "../../../firebase";
+import reset from "styled-reset";
 
 export const Password: FunctionComponent = () => {
   const [data, setData] = useState<{
@@ -31,6 +37,9 @@ export const Password: FunctionComponent = () => {
     special: false,
     uppercase: false,
   });
+
+  // flag which is pointing on that if the user's password was updated successfully
+  const [success, setSuccess] = useState<boolean>(true);
 
   /** check if the new password is correct */
   const checkPasswordRequirements = () => {
@@ -63,9 +72,6 @@ export const Password: FunctionComponent = () => {
     }
   };
 
-  // flag which is pointing on that if the user's password was updated successfully
-  const [success, setSuccess] = useState<boolean>(false);
-
   /** changing data state */
   const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -76,6 +82,13 @@ export const Password: FunctionComponent = () => {
     }));
   };
 
+ /** change success state and clear data state*/
+  const reset = () => {
+     setData({  password: "",
+     passwordRepeat: ""});
+
+     return setSuccess(false);
+  }
   /** firebase auth operation - change user's password */
   const handleResetPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -99,7 +112,7 @@ export const Password: FunctionComponent = () => {
   };
 
 
-  
+
   return (
     <>
       {!success && (
@@ -174,6 +187,17 @@ export const Password: FunctionComponent = () => {
             <Button>Change password</Button>
           </BtnWrapper>
         </SettingsForm>
+      )}
+
+{success && (
+        <SuccessfulNotification>
+          <SuccessfulTitle>Your password has been updated</SuccessfulTitle>
+
+          {/* button with applied function which is responsible for restarting form */}
+          <BtnWrapper>
+            <SuccessfulBtn onClick={reset}>Back</SuccessfulBtn>
+          </BtnWrapper>
+        </SuccessfulNotification>
       )}
     </>
   );
