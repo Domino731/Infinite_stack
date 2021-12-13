@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import {
   AuthContainer,
   AuthForm,
@@ -41,7 +41,7 @@ export const Login: FunctionComponent = () => {
   }, []);
 
   /** auth operation responsible for logging user */
-  const handleLogin = async (e: Event) => {
+  const handleLogin =  useCallback( async (e: Event) => {
     e.preventDefault();
 
     // clear previous errors
@@ -77,13 +77,13 @@ export const Login: FunctionComponent = () => {
           }
         })
     );
-  };
+  }, []);
 
   /** change data state */
-  const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     return setData((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
   return (
     <AuthContainer data-testid="login-container">

@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import {
   AuthContainer,
   AuthForm,
@@ -43,7 +43,7 @@ export const SignUp: FunctionComponent = () => {
   }, []);
 
   // creating user profile and his initial data in firestore database
-  const authAction = async () => {
+  const authAction = useCallback( async () => {
     // remove previous errors
     setError({ email: "", password: "" });
 
@@ -77,13 +77,13 @@ export const SignUp: FunctionComponent = () => {
           }
         })
     );
-  };
+  }, []);
 
   // to check if a user's password is containing a special character
   const special = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
   /** try to create user's account in firebase */
-  const signUp = async(e: Event) => {
+  const signUp =  useCallback(async(e: Event) => {
     e.preventDefault();
     if (data.password === data.repeat && special.test(data.password)) {
       return await authAction();
@@ -100,12 +100,12 @@ export const SignUp: FunctionComponent = () => {
         }));
       }
     }
-  };
+  }, []);
 
-  const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeData = useCallback( (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     return setData((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
   return (
     <AuthContainer>

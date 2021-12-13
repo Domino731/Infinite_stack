@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AuthForm,
@@ -31,13 +31,14 @@ export const PasswordRecovery: FunctionComponent = () => {
   const [error, setError] = useState<string>("");
 
   const [successSendFlag, setSuccessSendFlag] = useState<boolean>(false);
+  
   /** change email state */
-  const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     return setData(e.target.value);
-  };
+  }, []);
 
   // set mail with next steps
-  const handleResetPassword = async (e: Event) => {
+  const handleResetPassword = useCallback(async (e: Event) => {
     e.preventDefault();
 
     // clear error
@@ -63,7 +64,8 @@ export const PasswordRecovery: FunctionComponent = () => {
           setError(`Enter e-mail`);
         }
       });
-  };
+  }, []);
+
   return (
     <PasswordRecoveryContainer data-testid="password-recovery-container">
       {/* form */}
