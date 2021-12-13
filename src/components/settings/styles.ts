@@ -155,5 +155,11 @@ export const Requirements = styled.div`
 export const WarningText = styled.p`
   font-size: 20px;
   text-shadow: 0.03em 0.03em ${(props) => props.theme.color.red};
+  margin-bottom: 10px;
+`;
+export const DeleteCode = styled.strong`
+  font-size: 20px;
+  display: block;
+  text-align: center;
   margin-bottom: 20px;
 `;
